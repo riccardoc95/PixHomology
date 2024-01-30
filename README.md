@@ -1,6 +1,7 @@
 ![Alt text](https://github.com/riccardoc95/PixHomology/blob/main/docs/logo.png)
 
 # Persistent Homology Calculation for Pixels
+[![version](https://img.shields.io/badge/version-alpha-yellow.svg)](https://semver.org)
 
 PixHomology is an open-source software for image processing and analysis focused on persistent homology computation. It provides a set of tools and algorithms to explore the topological features of images, enabling users to extract meaningful information about the underlying structures.
 
