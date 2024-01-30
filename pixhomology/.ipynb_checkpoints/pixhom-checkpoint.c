@@ -104,41 +104,29 @@ int compareUPoints(const void *a, const void *b) {
 
 // Persistent Homology dimension 0 function
 Result calculatePH(float *inputArray, int numRows, int numCols) {
-
-    // Copy input array
+    
+    // Input array for noise
     double input[numRows * numCols];
-    copyFloatDoubleArray(inputArray, input, numRows * numCols);
-    
-    
-    // Calculate min difference
-    double min_diff = INT_MAX;
-    double diff = 0;
-    for (int i = 0; i < numRows * numCols; i++) {
-        for (int j = 0; j < numRows * numCols; j++) {
-            diff = fabs(input[i] - input[j]);
-            if (diff > 0 && diff < min_diff) {
-                min_diff = diff;
 
-            }
-        }
-    }
-
-    double factor = 1.;
-    double a = factor * min_diff / 5;
-    
-    /*
-    float a = 0.001;
-    float min_diff = 1;
-    */
-    
+    double a = 0.0001;
 
     //Intializes random number generator
     time_t t;
     srand((unsigned) time(&t));
     // Add noise
-    for (int i = 0; i < numRows * numCols; i++) {
-        double noise = (rand() / (RAND_MAX+1.)) * a; // * 2.0 * a - a;
-        input[i] = input[i] + noise;
+    for (int i = 0; i < numRows * numCols; i++) { 
+        double num = inputArray[i];
+        double noise = (rand() / (RAND_MAX+1.));
+        
+        num = fabs(num);
+        num = num - (int)num;
+        while (num != 0){
+            num = num * 10;
+            noise = noise / 10;
+            num = num - (int)num;
+        }
+    
+        input[i] = inputArray[i] + noise;
     }
 
 
@@ -269,9 +257,9 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
         }
     
         if (c_obj != u_obj) {
-            if (input[c_obj] > input[u_obj]) {
+            if (inputArray[c_obj] > inputArray[u_obj]) {
                 mpatch[u_obj] = c_obj;
-                if (fabs(input[u_obj] - input[u_point]) > a) {
+                if (fabs(inputArray[u_obj] - inputArray[u_point]) > a) {
                     dgm[num_dgm] = inputArray[u_obj];
                     dgm[(num_dgm + 1)] = inputArray[u_point];
                     num_dgm = num_dgm + 2;
@@ -280,7 +268,7 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
                 }
             } else {
                 mpatch[c_obj] = u_obj;
-                if (fabs(input[c_obj] - input[u_point]) > a) {
+                if (fabs(inputArray[c_obj] - inputArray[u_point]) > a) {
                     dgm[num_dgm]  = inputArray[c_obj];
                     dgm[(num_dgm + 1)] = inputArray[u_point];
                     num_dgm = num_dgm + 2;
