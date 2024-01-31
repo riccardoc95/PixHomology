@@ -95,8 +95,9 @@ int compareUPoints(const void *a, const void *b) {
 
 // Persistent Homology dimension 0 function
 Result calculatePH(float *inputArray, int numRows, int numCols) {
+    
     // Input array for noise
-    long double input[numRows * numCols];
+    long double *input = malloc(numRows * numCols * sizeof(long double));;
 
     //Intializes random number generator
     time_t t;
@@ -105,11 +106,12 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
     // Add noise
     for (int i = 0; i < numRows * numCols; i++) { 
         long double noise = (rand() / (RAND_MAX+1.)) / 10;
-        input[i] = inputArray[i] * 100000000 + noise;
+        input[i] = (long double)inputArray[i] * 100000000 + noise;
     }
 
     // Calculate Argmin and Argmax
     MinMaxIndices argMinMax = findArgminArgmax(input, numRows * numCols);
+
     
     // Allocate memory for the mpatch array
     int *mpatch = malloc(numRows * numCols * sizeof(int));
@@ -209,16 +211,13 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
         }
     }
 
-
     // Sort u_points in descending order
-    qsort(u_points, num_u_points, sizeof(UPoint), compareUPoints);
-
+    qsort(u_points, num_u_points, sizeof(*u_points), compareUPoints);
 
     // Create an array to store information about dgm
     float *dgm = (float *)malloc(2 * sizeof(float));
     int num_dgm = 0;
-
-    
+   
     // Find dgm
     for (int i = 0; i < num_u_points; i++) {
         int c_point = u_points[i].c_point;
@@ -261,7 +260,12 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
     dgm[(num_dgm + 1)] = inputArray[argMinMax.argmin];  // Minimum value
     num_dgm = num_dgm + 2;
 
+    //Clear
+    free(input);
+    free(mpatch);
+    free(u_points);
+
     Result res = { dgm, num_dgm };
     return res; 
-
+    
 }
