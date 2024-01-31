@@ -43,12 +43,16 @@ class CIFAR10:
 class IMAGENET_A:
     def __init__(self,normalize=False):
         ds = tfds.load('imagenet_a', split='test')
-        self.imagenet_a = list(map(lambda x: x['image'], ds))
+        self.imagenet_a = []
+        for i, x in enumerate(ds):
+            self.imagenet_a.append(x['image'])
+            if i == 200:
+                break
         self.type = type
         self.normalize = normalize
     
     def get_size(self):
-        return 10#len(self.imagenet_a)
+        return 200#len(self.imagenet_a)
     
     def image(self, i=0):
         return rgb2gray(self.imagenet_a[i].numpy().astype(np.float32), normalize=self.normalize)
@@ -57,7 +61,11 @@ class IMAGENET_A:
 class DIV2K:
     def __init__(self, type='hr',normalize=False):
         ds = tfds.load('div2k', split='train')
-        self.div2k = list(map(lambda x: x[type], ds))
+        self.div2k = []
+        for i, x in enumerate(ds):
+            self.div2k.append(x[type])
+            if i == 10:
+                break
         self.type = type
         self.normalize = normalize
     
