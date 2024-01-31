@@ -260,7 +260,7 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
     dgm[(num_dgm + 1)] = inputArray[argMinMax.argmin];  // Minimum value
     num_dgm = num_dgm + 2;
 
-    //Clear
+    //Clean
     free(input);
     free(mpatch);
     free(u_points);
