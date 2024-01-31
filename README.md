@@ -1,7 +1,7 @@
 ![Alt text](https://github.com/riccardoc95/PixHomology/blob/main/docs/logo.png)
 
 # Calculation of Persistent Homology for Pixel Data
-[![version](https://img.shields.io/badge/version-alpha-yellow.svg)](https://semver.org)
+[![version](https://img.shields.io/badge/version-0.0.1alpha-yellow.svg)](https://semver.org)
 [![version](https://img.shields.io/badge/python-11.5-version.svg)](https://semver.org)
 [![version](https://img.shields.io/badge/gcc-15.0.0-version.svg)](https://semver.org)
 
