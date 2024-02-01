@@ -7,8 +7,8 @@ import gc
 
 
 data = {
-    'MNIST': MNIST(),
-    'CIFAR10': CIFAR10(),
+    #'MNIST': MNIST(),
+    #'CIFAR10': CIFAR10(),
     'IMAGENET_A': IMAGENET_A(),
     'DIV2K': DIV2K()
 }

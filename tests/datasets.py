@@ -59,7 +59,7 @@ class IMAGENET_A:
         return len(self.imagenet_a)
     
     def image(self, i=0):
-        return rgb2gray(next(self.it_imagenet_a)[self.type].numpy().astype(np.float32), normalize=self.normalize)
+        return rgb2gray(next(self.it_imagenet_a)['image'].numpy().astype(np.float32), normalize=self.normalize)
 
 
 class DIV2K:

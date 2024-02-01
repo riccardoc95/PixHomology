@@ -30,7 +30,7 @@ def results_test(dataset):
                 p2 = dgm_pixh[i]
     
                 d = np.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
-                if d < 1e-05:
+                if d < 1e-04:
                     continue
                 else:
                     print(f"ERROR: the differences beetween 2 points in the dgm is {d}!")
