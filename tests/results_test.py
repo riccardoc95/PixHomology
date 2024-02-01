@@ -26,7 +26,11 @@ def results_test(dataset):
     
         dgm_rips = sorted([tuple(dgm_rips[i]) for i in range(len(dgm_rips))])
         dgm_pixh = sorted([tuple(dgm_pixh[i]) for i in range(len(dgm_pixh))])
-    
+
+        # Experimental Comparison
+        # For large dgms the bottleneck distance may take a long time 
+        # or require a lot of memory. We propose this alternative comparison. 
+        # ATTENTION: the distance d could be incorrect due to approximations!
         if len(dgm_rips) == len(dgm_pixh):
             for i in range(len(dgm_rips)):
                 p1 = dgm_rips[i]
