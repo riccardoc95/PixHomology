@@ -1,5 +1,6 @@
 import numpy as np
 import ctypes
+from pathlib import Path
 
 # Define the Result structure in Python
 class Result(ctypes.Structure):
@@ -7,7 +8,7 @@ class Result(ctypes.Structure):
                 ("length", ctypes.c_int)]
 
 # Define the C PixHomology function
-pixhom = np.ctypeslib.load_library('pixhomology', '.')
+pixhom = np.ctypeslib.load_library('pixhomology', Path(__file__).parent.parent)
 
 pixhom.calculatePH.argtypes = [np.ctypeslib.ndpointer(dtype=np.float32, ndim=2, flags='C_CONTIGUOUS'),
                                ctypes.c_int,
