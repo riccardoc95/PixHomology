@@ -21,8 +21,8 @@ def results_test(dataset):
         dgm_pixh = ph.calculatePH(image.copy())
         dgm_pixh = dgm_pixh.astype(np.float32)
 
-        dgm_rips = np.around(dgm_rips,4)
-        dgm_pixh = np.around(dgm_pixh,4)
+        dgm_rips = np.trunc(dgm_rips * 100000) / 100000
+        dgm_pixh = np.trunc(dgm_pixh * 100000) / 100000
     
         dgm_rips = sorted([tuple(dgm_rips[i]) for i in range(len(dgm_rips))])
         dgm_pixh = sorted([tuple(dgm_pixh[i]) for i in range(len(dgm_pixh))])
