@@ -1,7 +1,7 @@
 from setuptools import setup, Extension, find_packages
 
 module = Extension('pixhomology',
-                   sources = ['pixhomology/pixhom_20240131.c'],
+                   sources = ['pixhomology/pixhom.c'],
                    extra_compile_args=['-std=c99'])
 
     
