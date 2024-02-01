@@ -26,21 +26,28 @@ TODO
 - TODO
   
 ## Installation
+For detailed installation instructions, please refer to the [Installation Guide](docs/installation.md).
 
+### Python package
+TODO
+
+### Building
 To install PixHomology, follow these steps:
 
 ```bash
+git clone https://github.com/riccardoc95/PixHomology.git
+cd PixHomology
 pip install .
 ```
-
-For detailed installation instructions, please refer to the [Installation Guide](docs/installation.md).
 
 ## Usage
 
 Here is a basic example of using PixHomology in Python:
 
 ```python
-from pixhomology import compute_homology
+import pixhomology as px
+image = np.random.rand(10,10)
+dgm = px.compute(image)
 ...
 ```
 
