@@ -26,7 +26,6 @@ TODO
 - TODO
   
 ## Installation
-For detailed installation instructions, please refer to the [Installation Guide](docs/installation.md).
 
 ### Python package
 TODO
@@ -39,6 +38,8 @@ git clone https://github.com/riccardoc95/PixHomology.git
 cd PixHomology
 pip install .
 ```
+
+For detailed installation instructions, please refer to the [Installation Guide](docs/installation.md).
 
 ## Usage
 
