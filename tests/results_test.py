@@ -2,33 +2,44 @@ import numpy as np
 import pixhomology as ph
 from ripser import lower_star_img
 from datasets import MNIST, CIFAR10, IMAGENET_A, DIV2K
+from persim import bottleneck
 
 import tqdm
 
-def trunc(values, decs=0):
-    return np.trunc(values*10**decs)/(10**decs)
 
-dataset = MNIST()
-n_images = dataset.get_size()
-
-for i in tqdm.tqdm(range(n_images)):
-    image = dataset.image(i)
+def results_test(dataset):
+    n_images = dataset.get_size()
     
-    dgm_rips = image.max() - lower_star_img(image.max() - image)
-    dgm_rips[dgm_rips == -np.inf] = image.min()
-    dgm_rips = trunc(dgm_rips.astype(np.float32),3)
-    dgm_ours = ph.calculatePH(image.copy())
-    dgm_ours = trunc(dgm_ours.astype(np.float32),3)
+    for i in tqdm.tqdm(range(n_images), leave=False):
+        image = dataset.image(i)
+    
+        
+        dgm_rips = image.max() - lower_star_img(image.max() - image)
+        dgm_rips[dgm_rips == -np.inf] = image.min()
+        dgm_rips = dgm_rips.astype(np.float32)
+    
+        dgm_pixh = ph.calculatePH(image.copy())
+        dgm_pixh = dgm_pixh.astype(np.float32)
+    
+        dgm_rips = sorted([tuple(dgm_rips[i]) for i in range(len(dgm_rips))])
+        dgm_pixh = sorted([tuple(dgm_pixh[i]) for i in range(len(dgm_pixh))])
+    
+        if len(dgm_rips) == len(dgm_pixh):
+            for i in range(len(dgm_rips)):
+                p1 = dgm_rips[i]
+                p2 = dgm_pixh[i]
+    
+                d = np.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
+                if d < 1e-05:
+                    continue
+                else:
+                    print(f"ERROR: the differences beetween 2 points in the dgm is {d}!")
+                    return False
+        else:
+            print("ERROR: there are not the same number of points in the diagrams!")
+            return False
+    return True
 
-    if ((dgm_ours[None,:,:] == dgm_rips[:,None,:]).all(axis=2).sum(axis=0) > 0).sum() == len(dgm_rips) and len(dgm_rips) == len(dgm_ours):
-        continue
-    else:
-        print(len(dgm_rips) - len(dgm_ours))
-        print(dgm_rips) 
-        print(dgm_ours)
-
-        print(((dgm_ours[None,:,:] == dgm_rips[:,None,:]).all(axis=2).sum(axis=0) > 0).sum())
-        print(len(dgm_rips))
-        break
-
-#print(dgm_rips, dgm_ours)
+if __name__ == "__main__":
+    dataset = MNIST()
+    results = results_test(dataset)

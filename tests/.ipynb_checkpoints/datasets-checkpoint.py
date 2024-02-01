@@ -3,6 +3,14 @@ from tensorflow.keras import datasets
 import tensorflow_datasets as tfds
 import tqdm
 
+import warnings
+warnings.filterwarnings("ignore")
+
+import tensorflow as tf
+import logging
+tf.get_logger().setLevel(logging.ERROR)
+
+
 def rgb2gray(rgb, normalize=False):
     r, g, b = rgb[:,:,0], rgb[:,:,1], rgb[:,:,2]
     gray = 0.2989 * r + 0.5870 * g + 0.1140 * b
@@ -42,36 +50,34 @@ class CIFAR10:
 
 class IMAGENET_A:
     def __init__(self,normalize=False):
-        ds = tfds.load('imagenet_a', split='test')
-        self.imagenet_a = []
-        for i, x in enumerate(ds):
-            self.imagenet_a.append(x['image'])
-            if i == 200:
-                break
+        self.imagenet_a = tfds.load('imagenet_a', split='test')
+        self.it_imagenet_a = iter(self.imagenet_a)
         self.type = type
         self.normalize = normalize
     
     def get_size(self):
-        return 200#len(self.imagenet_a)
+        return len(self.imagenet_a)
     
     def image(self, i=0):
-        return rgb2gray(self.imagenet_a[i].numpy().astype(np.float32), normalize=self.normalize)
+        return rgb2gray(next(self.it_imagenet_a)[self.type].numpy().astype(np.float32), normalize=self.normalize)
 
 
 class DIV2K:
     def __init__(self, type='hr',normalize=False):
-        ds = tfds.load('div2k', split='train')
-        self.div2k = []
-        for i, x in enumerate(ds):
-            self.div2k.append(x[type])
-            if i == 10:
-                break
+        self.div2k = tfds.load('div2k', split='train')
+        self.it_div2k = iter(self.div2k)
         self.type = type
         self.normalize = normalize
     
     def get_size(self):
-        return 10#len(self.div2k)
+        return len(self.div2k)
     
     def image(self, i=0):
-        return rgb2gray(self.div2k[i].numpy().astype(np.float32), normalize=self.normalize)
+        return rgb2gray(next(self.it_div2k)[self.type].numpy().astype(np.float32), normalize=self.normalize)
+
+
+if __name__ == "__main__":
+    d = DIV2K()
+    print(d.image(0))
+
     

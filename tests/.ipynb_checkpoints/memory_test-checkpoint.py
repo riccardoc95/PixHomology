@@ -9,10 +9,10 @@ import tqdm
 
 def memory_test(dataset):
     n_images = dataset.get_size()
-    ours_mem = []
+    pixh_mem = []
     rips_mem = []
     
-    for i in tqdm.tqdm(range(n_images)):
+    for i in tqdm.tqdm(range(n_images), leave=False):
         image = dataset.image(i)
         
         tracemalloc.start()
@@ -21,18 +21,18 @@ def memory_test(dataset):
         tracemalloc.stop()
     
         tracemalloc.start()
-        dgm_ours = ph.calculatePH(image.copy())
-        ours_mem.append(tracemalloc.get_traced_memory()[1])
+        dgm_pixh = ph.calculatePH(image.copy())
+        pixh_mem.append(tracemalloc.get_traced_memory()[1])
         tracemalloc.stop()
     
     rips_mem = np.array(rips_mem)
-    ours_mem = np.array(ours_mem)
-    return {'rips_mem': rips_mem, 'ours_mem': ours_mem}
+    pixh_mem = np.array(pixh_mem)
+    return {'rips_mem': rips_mem, 'pixh_mem': pixh_mem}
 
 
 
 if __name__ == "__main__":
-    dataset = MNIST()
+    dataset = DIV2K()
     results = memory_test(dataset)
-    print(np.mean(results['rips_mem']), np.mean(results['ours_mem']))
+    print(np.mean(results['rips_mem']), np.mean(results['pixh_mem']))
     
