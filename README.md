@@ -31,12 +31,15 @@ pip install .
 For detailed installation instructions, please refer to the [Installation Guide](docs/installation.md).
 
 ## Usage
-To test the performance of PixHomology:
+- To test the performance of PixHomology:
 ```bash
 cd tests
 python all_in_one.py
 ```
-Here is a basic example of using PixHomology in Python:
+> Please note that the installation of other packages is required to download the datasets.
+
+
+- Here is a basic example of using PixHomology in Python:
 
 ```python
 import pixhomology as px
