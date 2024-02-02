@@ -29,7 +29,9 @@ TODO
 ## Installation
 
 ### Python package
+```bash
 SOON
+```
 
 ### Building
 To install PixHomology, follow these steps:
