@@ -31,7 +31,11 @@ pip install .
 For detailed installation instructions, please refer to the [Installation Guide](docs/installation.md).
 
 ## Usage
-
+To test the performance of PixHomology:
+```bash
+cd tests
+python all_in_one.py
+```
 Here is a basic example of using PixHomology in Python:
 
 ```python
