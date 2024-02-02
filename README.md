@@ -5,7 +5,7 @@
 [![version](https://img.shields.io/badge/python-11.5-version.svg)](https://www.python.org/)
 [![version](https://img.shields.io/badge/gcc-15.0.0-version.svg)](https://gcc.gnu.org/)
 
-PixHomology is an open-source software for image processing and analysis focused on persistent homology computation. It provides a set of tools and algorithms to explore the topological features of 2D images, enabling users to extract meaningful information about the underlying structures. In its initial alpha release, the software enables the computation of 0-dimensional homology on a 2D image. The construction of simplicial complexes involves establishing connections between each pixel and its eight neighboring pixels.
+PixHomology is an open-source software for image processing and analysis focused on persistent homology computation. It provides a set of tools and algorithms to explore the topological features of 2D images, enabling users to extract meaningful information about the underlying structures. 
 
 ## Table of Contents
 
@@ -23,7 +23,8 @@ TODO
 
 ## Features
 
-- TODO
+- In its initial release, the software enables the computation of 0-dimensional homology on a 2D image.
+- The construction of simplicial complexes involves establishing connections between each pixel and its 8 neighboring pixels.
   
 ## Installation
 
