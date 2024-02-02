@@ -7,20 +7,6 @@
 
 PixHomology is an open-source software for image processing and analysis focused on persistent homology computation. It provides a set of tools and algorithms to explore the topological features of 2D images, enabling users to extract meaningful information about the underlying structures. 
 
-## Table of Contents
-
-- [Introduction](#introduction)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Documentation](#documentation)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Introduction
-
-TODO
-
 ## Features
 
 - In its initial release, the software enables the computation of 0-dimensional homology on a 2D image.
