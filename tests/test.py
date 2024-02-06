@@ -1,18 +1,12 @@
 import numpy as np
-from datasets import MNIST, CIFAR10, IMAGENET_A, DIV2K
+from datasets import datasets
 from results_test import results_test
 from memory_test import memory_test
 from time_test import time_test
 import gc
 
 
-data = {
-    'MNIST': MNIST(),
-    'CIFAR10': CIFAR10(),
-    'IMAGENET_A': IMAGENET_A()#,
-    # ...with more RAM requirements
-    # 'DIV2K': DIV2K()
-}
+data = datasets()
 
 for i, (dataset_name, dataset) in enumerate(data.items()):
     print(f'{i}. {dataset_name}')

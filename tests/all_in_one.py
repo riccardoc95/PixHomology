@@ -1,7 +1,7 @@
 import numpy as np
 import pixhomology as ph
 from ripser import lower_star_img
-from datasets import MNIST, CIFAR10, IMAGENET_A, DIV2K
+from datasets import datasets
 from persim import bottleneck
 import tracemalloc
 import time
@@ -10,6 +10,8 @@ import gc
 
 
 def results_test(dataset, dataset_name='', idx=0):
+    gc.collect()
+
     n_images = dataset.get_size()
 
     pixh_time = []
@@ -83,7 +85,7 @@ def results_test(dataset, dataset_name='', idx=0):
     rips_mem = np.array(rips_mem)
     pixh_mem = np.array(pixh_mem)
     m = {'rips_mem': rips_mem, 'pixh_mem': pixh_mem}
-    
+
     print(f'{idx}. {dataset_name}')
     print('---------')
     print(f'    a. the diagram is valid: {not error}')
@@ -103,19 +105,18 @@ def results_test(dataset, dataset_name='', idx=0):
                                                                              np.max(m['pixh_mem'])))
     
     print()
-    gc.collect()
+
 
     
-    return True
+    return rips_time, pixh_time, rips_mem, pixh_mem
 
 if __name__ == "__main__":
-    data = {
-    'MNIST': MNIST(),
-    'CIFAR10': CIFAR10(),
-    'IMAGENET_A': IMAGENET_A()#,
-    # ...with more RAM requirements
-    # 'DIV2K': DIV2K()
-    }
+    data = datasets()
 
     for i, (dataset_name, dataset) in enumerate(data.items()):
-        results_test(dataset, dataset_name, i)
+        rips_time, pixh_time, rips_mem, pixh_mem = results_test(dataset, dataset_name, i)
+        np.savez(dataset_name+'.npz',
+                 rips_time=rips_time,
+                 pixh_time=pixh_time,
+                 rips_mem=rips_mem,
+                 pixh_mem=pixh_mem)
