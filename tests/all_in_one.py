@@ -27,7 +27,7 @@ def results_test(dataset, dataset_name='', idx=0):
 
         tracemalloc.start()
         start = time.time()
-        dgm_rips = image.max() - lower_star_img(image.max() - image)
+        dgm_rips = - lower_star_img(- image)
         rips_time.append(time.time() - start)
         rips_mem.append(tracemalloc.get_traced_memory()[1])
         tracemalloc.stop()
