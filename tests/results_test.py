@@ -14,7 +14,7 @@ def results_test(dataset):
         image = dataset.image(i)
     
         
-        dgm_rips = image.max() - lower_star_img(image.max() - image)
+        dgm_rips = - lower_star_img(- image)
         dgm_rips[dgm_rips == -np.inf] = image.min()
         dgm_rips = dgm_rips.astype(np.float32)
     
