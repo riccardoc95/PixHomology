@@ -1,4 +1,4 @@
-ripser
+ripser @ git+https://github.com/scikit-tda/ripser.py.git
 astropy
 tensorflow
 tensorflow_datasets
