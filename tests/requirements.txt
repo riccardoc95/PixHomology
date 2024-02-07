@@ -1,3 +1,6 @@
+ripser
+cripser
+dionysus
 astropy
 tensorflow
 tensorflow_datasets
