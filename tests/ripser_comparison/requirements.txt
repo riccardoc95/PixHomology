@@ -2,5 +2,6 @@ ripser
 astropy
 tensorflow
 tensorflow_datasets
+tracemalloc
 wget
 tqdm
