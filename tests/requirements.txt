@@ -1,6 +1,0 @@
-ripser
-astropy
-tensorflow
-tensorflow_datasets
-wget
-tqdm
