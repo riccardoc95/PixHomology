@@ -2,12 +2,15 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras import datasets as ds
 import tensorflow_datasets as tfds
+from astropy.io import fits
 from PIL import Image
 import wget
 import os
 from pathlib import Path
+import subprocess
 import zipfile
 import tqdm
+
 
 
 home = str(Path.home())
@@ -23,7 +26,8 @@ def datasets():
         'CIFAR10': CIFAR10(),
         'IMAGENET_A': IMAGENET_A(),
         'DIV2K': DIV2K(),
-        'KATHER': KATHER_LARGER()
+        'KATHER': KATHER_LARGER(),
+        'MAST': MAST()
     }
     return datasets
 
@@ -121,6 +125,29 @@ class KATHER_LARGER:
         image = np.asarray(image)
         return rgb2gray(image.astype(np.float32), normalize=self.normalize)
 
+
+class MAST:
+    def __init__(self):
+        print(Path(dataset_dir + '/MAST').is_dir(), dataset_dir + '/MAST')
+        if not Path(dataset_dir + '/MAST').is_dir():
+            _ = subprocess.run(['bash', '-x', 'supplementary/MAST.sh'])
+
+        self.files = []
+        for path, subdirs, files in os.walk(dataset_dir + '/MAST'):
+            for name in files:
+                if name.endswith(".fits"):
+                    self.files.append(os.path.join(path, name))
+
+    def get_size(self):
+        return len(self.files)
+
+    def image(self, i=0):
+        try:
+            img = fits.open(self.files[i])['SCI'].data
+        except:
+            img = fits.open(self.files[i])['PRIMARY'].data
+
+        return img.astype(np.float32)
 
 if __name__ == "__main__":
     datasets = datasets()
