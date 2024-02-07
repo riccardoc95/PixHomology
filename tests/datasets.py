@@ -146,8 +146,7 @@ class MAST:
             img = fits.open(self.files[i])['SCI'].data
         except:
             img = fits.open(self.files[i])['PRIMARY'].data
-        img -= img.min()
-        img /= img.max()
+        img = np.nan_to_num(img, nan=np.nanmin(img)) 
         
         return img.astype(np.float32)
 
