@@ -31,13 +31,11 @@ pip install .
 For detailed installation instructions, please refer to the [Installation Guide](docs/installation.md).
 
 ## Usage
-- To test the performance of PixHomology:
+- To test the package:
 ```bash
 cd tests
-python all_in_one.py
+python test.py
 ```
-> Please note that the installation of other packages is required to download the datasets.
-
 
 - Here is a basic example of using PixHomology in Python:
 
@@ -47,8 +45,15 @@ image = np.random.rand(10,10)
 dgm = px.compute(image)
 ...
 ```
-
 For more examples and detailed usage instructions, check out the [Usage Guide](docs/usage.md).
+
+- To test the performance of PixHomology:
+> Please note that the installation of other packages and datasets download are required
+ ```bash
+cd tests/ripser_comparison
+pip install -r requirements.txt
+python test.py
+```
 
 ## Documentation
 
