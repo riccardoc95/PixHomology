@@ -146,7 +146,9 @@ class MAST:
             img = fits.open(self.files[i])['SCI'].data
         except:
             img = fits.open(self.files[i])['PRIMARY'].data
-
+        img -= img.min()
+        img /= img.max()
+        
         return img.astype(np.float32)
 
 if __name__ == "__main__":
