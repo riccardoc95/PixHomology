@@ -24,10 +24,10 @@ def datasets():
     datasets = {
         'MNIST': MNIST(),
         'CIFAR10': CIFAR10(),
-        'IMAGENET_A': IMAGENET_A(),
-        'DIV2K': DIV2K(),
-        'KATHER': KATHER_LARGER(),
-        'MAST': MAST()
+        #'IMAGENET_A': IMAGENET_A(),
+        #'DIV2K': DIV2K(),
+        #'KATHER': KATHER_LARGER(),
+        #'MAST': MAST()
     }
     return datasets
 
