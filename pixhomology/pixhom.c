@@ -8,7 +8,7 @@
 
 // Define a struct to store the result
 typedef struct {
-    int *data;
+    float *data;
     int length;
 } Result;
 
@@ -215,7 +215,7 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
     qsort(u_points, num_u_points, sizeof(*u_points), compareUPoints);
 
     // Create an array to store information about dgm
-    int *dgm = (int *)malloc(2 * sizeof(int));
+    float *dgm = (float *)malloc(2 * sizeof(float));
     int num_dgm = 0;
    
     // Find dgm
@@ -237,8 +237,8 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
             if (input[c_obj] > input[u_obj]) {
                 mpatch[u_obj] = c_obj;
                 if (fabs(input[u_obj] - input[u_point]) > 0.1) {
-                    dgm[num_dgm] = u_obj;
-                    dgm[(num_dgm + 1)] = u_point;
+                    dgm[num_dgm] = inputArray[u_obj];
+                    dgm[(num_dgm + 1)] = inputArray[u_point];
                     num_dgm = num_dgm + 2;
                     dgm = realloc(dgm, (num_dgm + 2) * sizeof(UPoint));
                     
@@ -246,8 +246,8 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
             } else {
                 mpatch[c_obj] = u_obj;
                 if (fabs(input[c_obj] - input[u_point]) > 0.1) {
-                    dgm[num_dgm]  = c_obj;
-                    dgm[(num_dgm + 1)] = u_point;
+                    dgm[num_dgm]  = inputArray[c_obj];
+                    dgm[(num_dgm + 1)] = inputArray[u_point];
                     num_dgm = num_dgm + 2;
                     dgm = realloc(dgm, (num_dgm + 2) * sizeof(UPoint));
                 }
@@ -256,8 +256,8 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
     }
 
     // Append the maximum and minimum values to dgm
-    dgm[num_dgm] = argMinMax.argmax;  // Maximum value
-    dgm[(num_dgm + 1)] = argMinMax.argmin;  // Minimum value
+    dgm[num_dgm] = inputArray[argMinMax.argmax];  // Maximum value
+    dgm[(num_dgm + 1)] = inputArray[argMinMax.argmin];  // Minimum value
     num_dgm = num_dgm + 2;
 
     //Clean
