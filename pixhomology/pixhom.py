@@ -4,7 +4,7 @@ from pathlib import Path
 
 # Define the Result structure in Python
 class Result(ctypes.Structure):
-    _fields_ = [("data", ctypes.POINTER(ctypes.c_int)),
+    _fields_ = [("data", ctypes.POINTER(ctypes.c_float)),
                 ("length", ctypes.c_int)]
 
 # Define the C PixHomology function
@@ -36,6 +36,5 @@ def calculatePH(arr):
     # Call the C function
     result_struct = pixhom.calculatePH(arr, num_rows, num_cols)
     result = np.ctypeslib.as_array(result_struct.data, shape=(int(result_struct.length/2), 2))
-    result = arr.flatten()[result]
 
     return result
