@@ -236,7 +236,7 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
         if (c_obj != u_obj) {
             if (input[c_obj] > input[u_obj]) {
                 mpatch[u_obj] = c_obj;
-                if (fabs(input[u_obj] - input[u_point]) >= 1) {
+                if (fabs(input[u_obj] - input[u_point]) > 0.1) {
                     dgm[num_dgm] = u_obj;
                     dgm[(num_dgm + 1)] = u_point;
                     num_dgm = num_dgm + 2;
@@ -245,7 +245,7 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
                 }
             } else {
                 mpatch[c_obj] = u_obj;
-                if (fabs(input[c_obj] - input[u_point]) >= 1) {
+                if (fabs(input[c_obj] - input[u_point]) > 0.1) {
                     dgm[num_dgm]  = c_obj;
                     dgm[(num_dgm + 1)] = u_point;
                     num_dgm = num_dgm + 2;
