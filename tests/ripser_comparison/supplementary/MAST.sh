@@ -421,18 +421,6 @@ curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output
 
 
 
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y805grq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y805grq/j8y805grq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y805grq/j8y805grq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y805grq_drz.fits'
-
-
-
-
-
 cat <<EOT
 <<< Downloading File: mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_01_acs_wfc_f606w_03_drz.fits
                   To: ${DOWNLOAD_FOLDER}/HLA/hst_10268_01_acs_wfc_f606w_03/hst_10268_01_acs_wfc_f606w_03_drz.fits
