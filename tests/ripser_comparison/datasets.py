@@ -1,11 +1,13 @@
 import numpy as np
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 import tensorflow as tf
 from tensorflow.keras import datasets as ds
 import tensorflow_datasets as tfds
 from astropy.io import fits
 from PIL import Image
 import wget
-import os
 from pathlib import Path
 import subprocess
 import zipfile
