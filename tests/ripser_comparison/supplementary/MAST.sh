@@ -12,16 +12,6 @@
 # Cycle:      13
 # Title:	    Recovery of three faint Kuiper Belt Objects discovered #with HST
 # PI:         David Trilling
-#
-# AND
-#
-# Prop. Type: GO
-# Category:   GALAXIES
-# ID:         10003
-# Cycle:      12
-# Title:	    Deep Chandra and Hubble Observations of NGC4697, the Nearest
-# 		    Optically Luminous, X-ray Faint Elliptical Galaxy
-# PI:         Craig Sarazin
 
 
 type -P curl >&/dev/null || { echo "This script requires curl. Exiting." >&2; exit 1; }
@@ -411,222 +401,6 @@ cat >${DOWNLOAD_FOLDER}/MANIFEST.HTML<<EOT
                 <td>anonymous</td>
             </tr>
             
-            <tr>
-                <td>mast:HST/product/hst_10003_01_wfpc2_pc_f606w_u8vg01_drz.fits</td>
-                <td>HST/hst_10003_01_wfpc2_pc_f606w_u8vg01/hst_10003_01_wfpc2_pc_f606w_u8vg01_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HST/product/j8vg01021_drz.fits</td>
-                <td>HST/j8vg01020/j8vg01021_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HST/product/j8y805gfq_drz.fits</td>
-                <td>HST/j8y805gfq/j8y805gfq_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HST/product/j8y801buq_drz.fits</td>
-                <td>HST/j8y801buq/j8y801buq_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HST/product/j8y801c2q_drz.fits</td>
-                <td>HST/j8y801c2q/j8y801c2q_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_02_acs_wfc_f606w_02_drz.fits</td>
-                <td>HLA/hst_10268_02_acs_wfc_f606w_02/hst_10268_02_acs_wfc_f606w_02_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HST/product/j8y802cvq_drz.fits</td>
-                <td>HST/j8y802cvq/j8y802cvq_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_04_acs_wfc_f555w_03_drz.fits</td>
-                <td>HLA/hst_10268_04_acs_wfc_f555w_03/hst_10268_04_acs_wfc_f555w_03_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_02_acs_wfc_f606w_04_drz.fits</td>
-                <td>HLA/hst_10268_02_acs_wfc_f606w_04/hst_10268_02_acs_wfc_f606w_04_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HST/product/j8vg01c0q_drz.fits</td>
-                <td>HST/j8vg01c0q/j8vg01c0q_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HST/product/j8y805ghq_drz.fits</td>
-                <td>HST/j8y805ghq/j8y805ghq_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HST/product/hst_10003_01_wfpc2_pc_f814w_u8vg01_drz.fits</td>
-                <td>HST/hst_10003_01_wfpc2_pc_f814w_u8vg01/hst_10003_01_wfpc2_pc_f814w_u8vg01_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_01_acs_wfc_f606w_01_drz.fits</td>
-                <td>HLA/hst_10268_01_acs_wfc_f606w_01/hst_10268_01_acs_wfc_f606w_01_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HST/product/j8y805glq_drz.fits</td>
-                <td>HST/j8y805glq/j8y805glq_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_03_acs_wfc_f606w_01_drz.fits</td>
-                <td>HLA/hst_10268_03_acs_wfc_f606w_01/hst_10268_03_acs_wfc_f606w_01_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_01_acs_wfc_f606w_04_drz.fits</td>
-                <td>HLA/hst_10268_01_acs_wfc_f606w_04/hst_10268_01_acs_wfc_f606w_04_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_04_acs_wfc_f555w_01_drz.fits</td>
-                <td>HLA/hst_10268_04_acs_wfc_f555w_01/hst_10268_04_acs_wfc_f555w_01_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HST/product/j8y805gpq_drz.fits</td>
-                <td>HST/j8y805gpq/j8y805gpq_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_03_acs_wfc_f606w_05_drz.fits</td>
-                <td>HLA/hst_10268_03_acs_wfc_f606w_05/hst_10268_03_acs_wfc_f606w_05_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_05_acs_wfc_f606w_07_drz.fits</td>
-                <td>HLA/hst_10268_05_acs_wfc_f606w_07/hst_10268_05_acs_wfc_f606w_07_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HST/product/hst_10003_01_wfpc2_pc_total_u8vg01_drz.fits</td>
-                <td>HST/hst_10003_01_wfpc2_pc_total_u8vg01/hst_10003_01_wfpc2_pc_total_u8vg01_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HST/product/j8y801bxq_drz.fits</td>
-                <td>HST/j8y801bxq/j8y801bxq_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_02_acs_wfc_f606w_05_drz.fits</td>
-                <td>HLA/hst_10268_02_acs_wfc_f606w_05/hst_10268_02_acs_wfc_f606w_05_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_03_acs_wfc_f606w_02_drz.fits</td>
-                <td>HLA/hst_10268_03_acs_wfc_f606w_02/hst_10268_03_acs_wfc_f606w_02_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HST/product/j8y805gdq_drz.fits</td>
-                <td>HST/j8y805gdq/j8y805gdq_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_04_acs_wfc_f814w_01_drz.fits</td>
-                <td>HLA/hst_10268_04_acs_wfc_f814w_01/hst_10268_04_acs_wfc_f814w_01_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
-            <tr>
-                <td>mast:HST/product/j8y801btq_drz.fits</td>
-                <td>HST/j8y801btq/j8y801btq_drz.fits</td>
-                <td>PUBLIC</td>
-                <td>OK</td>
-                <td>anonymous</td>
-            </tr>
-            
         </table>
     </body>
 </html>
@@ -679,93 +453,12 @@ curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output
 
 
 
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y803dnq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y803dnq/j8y803dnq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y803dnq/j8y803dnq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y803dnq_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y804e4q_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y804e4q/j8y804e4q_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y804e4q/j8y804e4q_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y804e4q_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y803djq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y803djq/j8y803djq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y803djq/j8y803djq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y803djq_drz.fits'
-
-
-
-
-
 cat <<EOT
 <<< Downloading File: mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_05_acs_wfc_f606w_05_drz.fits
                   To: ${DOWNLOAD_FOLDER}/HLA/hst_10268_05_acs_wfc_f606w_05/hst_10268_05_acs_wfc_f606w_05_drz.fits
 EOT
 
 curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HLA/hst_10268_05_acs_wfc_f606w_05/hst_10268_05_acs_wfc_f606w_05_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HLA/url/cgi-bin/getdata.cgi%3Fdataset%3Dhst_10268_05_acs_wfc_f606w_05_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y804e6q_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y804e6q/j8y804e6q_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y804e6q/j8y804e6q_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y804e6q_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y803diq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y803diq/j8y803diq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y803diq/j8y803diq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y803diq_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y804eaq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y804eaq/j8y804eaq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y804eaq/j8y804eaq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y804eaq_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y805gjq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y805gjq/j8y805gjq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y805gjq/j8y805gjq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y805gjq_drz.fits'
-
-
 
 
 
@@ -786,19 +479,6 @@ cat <<EOT
 EOT
 
 curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HLA/hst_10268_05_acs_wfc_f606w_01/hst_10268_05_acs_wfc_f606w_01_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HLA/url/cgi-bin/getdata.cgi%3Fdataset%3Dhst_10268_05_acs_wfc_f606w_01_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y802czq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y802czq/j8y802czq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y802czq/j8y802czq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y802czq_drz.fits'
-
-
 
 
 
@@ -830,84 +510,6 @@ cat <<EOT
 EOT
 
 curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HLA/hst_10268_05_acs_wfc_f606w_03/hst_10268_05_acs_wfc_f606w_03_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HLA/url/cgi-bin/getdata.cgi%3Fdataset%3Dhst_10268_05_acs_wfc_f606w_03_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8vg01011_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8vg01010/j8vg01011_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8vg01010/j8vg01011_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8vg01011_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y802ctq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y802ctq/j8y802ctq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y802ctq/j8y802ctq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y802ctq_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y802cxq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y802cxq/j8y802cxq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y802cxq/j8y802cxq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y802cxq_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y803dpq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y803dpq/j8y803dpq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y803dpq/j8y803dpq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y803dpq_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y804e8q_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y804e8q/j8y804e8q_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y804e8q/j8y804e8q_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y804e8q_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y805gcq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y805gcq/j8y805gcq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y805gcq/j8y805gcq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y805gcq_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y805gnq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y805gnq/j8y805gnq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y805gnq/j8y805gnq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y805gnq_drz.fits'
-
 
 
 
@@ -955,29 +557,6 @@ curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output
 
 
 
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y805gtq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y805gtq/j8y805gtq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y805gtq/j8y805gtq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y805gtq_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y804e3q_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y804e3q/j8y804e3q_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y804e3q/j8y804e3q_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y804e3q_drz.fits'
-
-
-
-
-
 cat <<EOT
 <<< Downloading File: mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_04_acs_wfc_f814w_02_drz.fits
                   To: ${DOWNLOAD_FOLDER}/HLA/hst_10268_04_acs_wfc_f814w_02/hst_10268_04_acs_wfc_f814w_02_drz.fits
@@ -1010,18 +589,6 @@ curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output
 
 
 
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y801bzq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y801bzq/j8y801bzq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y801bzq/j8y801bzq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y801bzq_drz.fits'
-
-
-
-
-
 cat <<EOT
 <<< Downloading File: mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_05_acs_wfc_f606w_02_drz.fits
                   To: ${DOWNLOAD_FOLDER}/HLA/hst_10268_05_acs_wfc_f606w_02/hst_10268_05_acs_wfc_f606w_02_drz.fits
@@ -1043,36 +610,12 @@ curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output
 
 
 
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y803dlq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y803dlq/j8y803dlq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y803dlq/j8y803dlq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y803dlq_drz.fits'
-
-
-
-
-
 cat <<EOT
 <<< Downloading File: mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_01_acs_wfc_f606w_02_drz.fits
                   To: ${DOWNLOAD_FOLDER}/HLA/hst_10268_01_acs_wfc_f606w_02/hst_10268_01_acs_wfc_f606w_02_drz.fits
 EOT
 
 curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HLA/hst_10268_01_acs_wfc_f606w_02/hst_10268_01_acs_wfc_f606w_02_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HLA/url/cgi-bin/getdata.cgi%3Fdataset%3Dhst_10268_01_acs_wfc_f606w_02_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y802csq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y802csq/j8y802csq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y802csq/j8y802csq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y802csq_drz.fits'
-
 
 
 
@@ -1100,78 +643,11 @@ curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output
 
 
 cat <<EOT
-<<< Downloading File: mast:HST/product/hst_10003_01_wfpc2_pc_f606w_u8vg01_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/hst_10003_01_wfpc2_pc_f606w_u8vg01/hst_10003_01_wfpc2_pc_f606w_u8vg01_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/hst_10003_01_wfpc2_pc_f606w_u8vg01/hst_10003_01_wfpc2_pc_f606w_u8vg01_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/hst_10003_01_wfpc2_pc_f606w_u8vg01_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8vg01021_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8vg01020/j8vg01021_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8vg01020/j8vg01021_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8vg01021_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y805gfq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y805gfq/j8y805gfq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y805gfq/j8y805gfq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y805gfq_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y801buq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y801buq/j8y801buq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y801buq/j8y801buq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y801buq_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y801c2q_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y801c2q/j8y801c2q_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y801c2q/j8y801c2q_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y801c2q_drz.fits'
-
-
-
-
-
-cat <<EOT
 <<< Downloading File: mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_02_acs_wfc_f606w_02_drz.fits
                   To: ${DOWNLOAD_FOLDER}/HLA/hst_10268_02_acs_wfc_f606w_02/hst_10268_02_acs_wfc_f606w_02_drz.fits
 EOT
 
 curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HLA/hst_10268_02_acs_wfc_f606w_02/hst_10268_02_acs_wfc_f606w_02_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HLA/url/cgi-bin/getdata.cgi%3Fdataset%3Dhst_10268_02_acs_wfc_f606w_02_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y802cvq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y802cvq/j8y802cvq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y802cvq/j8y802cvq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y802cvq_drz.fits'
-
 
 
 
@@ -1197,58 +673,12 @@ curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output
 
 
 
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8vg01c0q_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8vg01c0q/j8vg01c0q_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8vg01c0q/j8vg01c0q_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8vg01c0q_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y805ghq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y805ghq/j8y805ghq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y805ghq/j8y805ghq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y805ghq_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/hst_10003_01_wfpc2_pc_f814w_u8vg01_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/hst_10003_01_wfpc2_pc_f814w_u8vg01/hst_10003_01_wfpc2_pc_f814w_u8vg01_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/hst_10003_01_wfpc2_pc_f814w_u8vg01/hst_10003_01_wfpc2_pc_f814w_u8vg01_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/hst_10003_01_wfpc2_pc_f814w_u8vg01_drz.fits'
-
-
-
-
-
 cat <<EOT
 <<< Downloading File: mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_01_acs_wfc_f606w_01_drz.fits
                   To: ${DOWNLOAD_FOLDER}/HLA/hst_10268_01_acs_wfc_f606w_01/hst_10268_01_acs_wfc_f606w_01_drz.fits
 EOT
 
 curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HLA/hst_10268_01_acs_wfc_f606w_01/hst_10268_01_acs_wfc_f606w_01_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HLA/url/cgi-bin/getdata.cgi%3Fdataset%3Dhst_10268_01_acs_wfc_f606w_01_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y805glq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y805glq/j8y805glq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y805glq/j8y805glq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y805glq_drz.fits'
-
 
 
 
@@ -1287,17 +717,6 @@ curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output
 
 
 cat <<EOT
-<<< Downloading File: mast:HST/product/j8y805gpq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y805gpq/j8y805gpq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y805gpq/j8y805gpq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y805gpq_drz.fits'
-
-
-
-
-
-cat <<EOT
 <<< Downloading File: mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_03_acs_wfc_f606w_05_drz.fits
                   To: ${DOWNLOAD_FOLDER}/HLA/hst_10268_03_acs_wfc_f606w_05/hst_10268_03_acs_wfc_f606w_05_drz.fits
 EOT
@@ -1314,28 +733,6 @@ cat <<EOT
 EOT
 
 curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HLA/hst_10268_05_acs_wfc_f606w_07/hst_10268_05_acs_wfc_f606w_07_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HLA/url/cgi-bin/getdata.cgi%3Fdataset%3Dhst_10268_05_acs_wfc_f606w_07_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/hst_10003_01_wfpc2_pc_total_u8vg01_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/hst_10003_01_wfpc2_pc_total_u8vg01/hst_10003_01_wfpc2_pc_total_u8vg01_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/hst_10003_01_wfpc2_pc_total_u8vg01/hst_10003_01_wfpc2_pc_total_u8vg01_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/hst_10003_01_wfpc2_pc_total_u8vg01_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y801bxq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y801bxq/j8y801bxq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y801bxq/j8y801bxq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y801bxq_drz.fits'
 
 
 
@@ -1362,36 +759,12 @@ curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output
 
 
 
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y805gdq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y805gdq/j8y805gdq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y805gdq/j8y805gdq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y805gdq_drz.fits'
-
-
-
-
-
 cat <<EOT
 <<< Downloading File: mast:HLA/url/cgi-bin/getdata.cgi?dataset=hst_10268_04_acs_wfc_f814w_01_drz.fits
                   To: ${DOWNLOAD_FOLDER}/HLA/hst_10268_04_acs_wfc_f814w_01/hst_10268_04_acs_wfc_f814w_01_drz.fits
 EOT
 
 curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HLA/hst_10268_04_acs_wfc_f814w_01/hst_10268_04_acs_wfc_f814w_01_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HLA/url/cgi-bin/getdata.cgi%3Fdataset%3Dhst_10268_04_acs_wfc_f814w_01_drz.fits'
-
-
-
-
-
-cat <<EOT
-<<< Downloading File: mast:HST/product/j8y801btq_drz.fits
-                  To: ${DOWNLOAD_FOLDER}/HST/j8y801btq/j8y801btq_drz.fits
-EOT
-
-curl --globoff --location-trusted -f --progress-bar --create-dirs $CONT --output ${DOWNLOAD_FOLDER}'/HST/j8y801btq/j8y801btq_drz.fits' 'https://mast.stsci.edu/api/v0.1/Download/file?bundle_name=MAST_2024-02-07T0307.sh&uri=mast:HST/product/j8y801btq_drz.fits'
-
 
 
 
