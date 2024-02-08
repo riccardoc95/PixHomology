@@ -240,7 +240,7 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
                     dgm[num_dgm] = inputArray[u_obj];
                     dgm[(num_dgm + 1)] = inputArray[u_point];
                     num_dgm = num_dgm + 2;
-                    dgm = realloc(dgm, (num_dgm + 2) * sizeof(UPoint));
+                    dgm = realloc(dgm, (num_dgm + 2) * sizeof(float));
                     
                 }
             } else {
@@ -249,7 +249,7 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
                     dgm[num_dgm]  = inputArray[c_obj];
                     dgm[(num_dgm + 1)] = inputArray[u_point];
                     num_dgm = num_dgm + 2;
-                    dgm = realloc(dgm, (num_dgm + 2) * sizeof(UPoint));
+                    dgm = realloc(dgm, (num_dgm + 2) * sizeof(float));
                 }
             }
         }
