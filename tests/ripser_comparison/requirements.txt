@@ -1,6 +1,6 @@
 ripser @ git+https://github.com/scikit-tda/ripser.py.git
 astropy
-tensorflow-cpu
+tensorflow
 tensorflow_datasets
 wget
 tqdm
