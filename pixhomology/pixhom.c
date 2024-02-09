@@ -14,8 +14,8 @@ typedef struct {
 
 // Define a struct to store information about u_points
 typedef struct {
-    long double u_val;
-    long double c_val;
+    double u_val;
+    double c_val;
     int c_point;
     int u_point;
 } UPoint;
@@ -28,7 +28,7 @@ typedef struct {
 
 
 // Function to find Argmin and Argmax of array
-MinMaxIndices findArgminArgmax(const long double *arr, int size) {
+MinMaxIndices findArgminArgmax(const double *arr, int size) {
     MinMaxIndices result;
 
     if (size == 0) {
@@ -38,8 +38,8 @@ MinMaxIndices findArgminArgmax(const long double *arr, int size) {
         return result;
     }
 
-    long double min_val = arr[0];
-    long double max_val = arr[0];
+    double min_val = arr[0];
+    double max_val = arr[0];
     int min_index = 0;
     int max_index = 0;
 
@@ -97,7 +97,7 @@ int compareUPoints(const void *a, const void *b) {
 Result calculatePH(float *inputArray, int numRows, int numCols) {
     
     // Input array for noise
-    long double *input = malloc(numRows * numCols * sizeof(long double));;
+    double *input = malloc(numRows * numCols * sizeof(double));;
 
     //Intializes random number generator
     time_t t;
@@ -105,8 +105,8 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
     
     // Add noise
     for (int i = 0; i < numRows * numCols; i++) { 
-        long double noise = (rand() / (RAND_MAX+1.)) / 1000;
-        input[i] = (long double)inputArray[i] * 10000 + noise;
+        double noise = (rand() / (RAND_MAX+1.)) / 10;
+        input[i] = (double)inputArray[i] * 1000000 + noise;
     }
 
     // Calculate Argmin and Argmax
@@ -135,7 +135,7 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
             int y_end = (j < (numCols - 1)) ? (j + 1) : (numCols - 1);
 
             int c_point = i * numCols + j;
-            long double localmax = input[c_point];
+            double localmax = input[c_point];
 
             for (int h = x_start; h <= x_end; h++) {
                 for (int k = y_start; k <= y_end; k++) {
@@ -174,7 +174,7 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
             int c_point = i * numCols + j;
 
             int u_point = c_point;
-            long double u_val = input[u_point];
+            double u_val = input[u_point];
 
             for (int h = x_start; h <= x_end; h++) {
                 for (int k = y_start; k <= y_end; k++) {
@@ -183,8 +183,8 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
                     int c_obj = mpatch[c_point];
                     int t_obj = mpatch[t_point];
 
-                    long double c_val = input[c_point];
-                    long double t_val = input[t_point];
+                    double c_val = input[c_point];
+                    double t_val = input[t_point];
 
                     //int c_obj_val = input[c_point];
                     //int t_obj_val = input[t_point];
@@ -236,7 +236,7 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
         if (c_obj != u_obj) {
             if (input[c_obj] > input[u_obj]) {
                 mpatch[u_obj] = c_obj;
-                if (fabs(input[u_obj] - input[u_point]) > 0.001) {
+                if (fabs(input[u_obj] - input[u_point]) > 0.1) {
                     dgm[num_dgm] = inputArray[u_obj];
                     dgm[(num_dgm + 1)] = inputArray[u_point];
                     num_dgm = num_dgm + 2;
@@ -245,7 +245,7 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
                 }
             } else {
                 mpatch[c_obj] = u_obj;
-                if (fabs(input[c_obj] - input[u_point]) > 0.001) {
+                if (fabs(input[c_obj] - input[u_point]) > 0.1) {
                     dgm[num_dgm]  = inputArray[c_obj];
                     dgm[(num_dgm + 1)] = inputArray[u_point];
                     num_dgm = num_dgm + 2;
