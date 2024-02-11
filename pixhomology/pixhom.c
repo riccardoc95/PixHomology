@@ -5,30 +5,12 @@
 #include <math.h>
 #include <time.h>
 
-
-// Define a struct to store the result
-typedef struct {
-    float *data;
-    int length;
-} Result;
-
-// Define a struct to store information about u_points
-typedef struct {
-    double u_val;
-    double c_val;
-    int c_point;
-    int u_point;
-} UPoint;
-
-// Define a struct to store information about argmin and argmax
-typedef struct {
-    int argmin;
-    int argmax;
-} MinMaxIndices;
+#define MODULE_API_EXPORTS
+#include "pixhom.h"
 
 
 // Function to find Argmin and Argmax of array
-MinMaxIndices findArgminArgmax(const double *arr, int size) {
+MinMaxIndices findArgminArgmax(const double *arr, const int *noise, int size) {
     MinMaxIndices result;
 
     if (size == 0) {
@@ -47,12 +29,21 @@ MinMaxIndices findArgminArgmax(const double *arr, int size) {
         if (arr[i] < min_val) {
             min_val = arr[i];
             min_index = i;
+        }else if (arr[i] == min_val){
+            if (noise[i] < noise[min_index]){
+                min_index = i;
+            }
         }
 
         if (arr[i] > max_val) {
             max_val = arr[i];
             max_index = i;
+        }else if (arr[i] == max_val){
+            if (noise[i] > noise[max_index]){
+                max_index = i;
+            }
         }
+
     }
 
     result.argmin = min_index;
@@ -62,7 +53,7 @@ MinMaxIndices findArgminArgmax(const double *arr, int size) {
 }
 
 // Function to compare UPoints for qsort
-int compareUPoints(const void *a, const void *b) {    
+int compareUPoints(const void *a, const void *b) { 
     UPoint *p1 = (UPoint *) a;
     UPoint *p2 = (UPoint *) b;
     if (p2->u_val > p1->u_val){
@@ -94,23 +85,20 @@ int compareUPoints(const void *a, const void *b) {
 
 
 // Persistent Homology dimension 0 function
-Result calculatePH(float *inputArray, int numRows, int numCols) {
-    
-    // Input array for noise
-    double *input = malloc(numRows * numCols * sizeof(double));;
+MODULE_API Result computePH(double *inputArray, int numRows, int numCols) {
 
     //Intializes random number generator
     time_t t;
     srand((unsigned) time(&t));
     
-    // Add noise
+    // Input array for noise
+    int *noise = malloc(numRows * numCols * sizeof(int));
     for (int i = 0; i < numRows * numCols; i++) { 
-        double noise = (rand() / (RAND_MAX+1.)) / 10;
-        input[i] = (double)inputArray[i] * 1000000 + noise;
+        noise[i] = rand();
     }
 
     // Calculate Argmin and Argmax
-    MinMaxIndices argMinMax = findArgminArgmax(input, numRows * numCols);
+    MinMaxIndices argMinMax = findArgminArgmax(inputArray, noise, numRows * numCols);
 
     
     // Allocate memory for the mpatch array
@@ -125,7 +113,6 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
         mpatch[i] = i;
     }
 
-    
     // First pass to find local maxima
     for (int i = 0; i < numRows; i++) {
         for (int j = 0; j < numCols; j++) {
@@ -135,14 +122,20 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
             int y_end = (j < (numCols - 1)) ? (j + 1) : (numCols - 1);
 
             int c_point = i * numCols + j;
-            double localmax = input[c_point];
+            double localmax = inputArray[c_point];
 
             for (int h = x_start; h <= x_end; h++) {
                 for (int k = y_start; k <= y_end; k++) {
                      int t_point = h * numCols + k;
-                    if (localmax < input[t_point]) {
+                    if (localmax < inputArray[t_point]) {
                         mpatch[c_point] = t_point;
-                        localmax = input[t_point];
+                        localmax = inputArray[t_point];
+                    }else if (localmax == inputArray[t_point]){
+                        if (noise[c_point] < noise[t_point]){
+                            mpatch[c_point] = t_point;
+                        }else{
+                            mpatch[c_point] = c_point;
+                        }
                     }
                 }
             }
@@ -162,7 +155,7 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
             break;
         }
     }
-    
+
     // Find u_points
     for (int i = 0; i < numRows; i++) {
         for (int j = 0; j < numCols; j++) {
@@ -174,7 +167,7 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
             int c_point = i * numCols + j;
 
             int u_point = c_point;
-            double u_val = input[u_point];
+            double u_val = inputArray[u_point];
 
             for (int h = x_start; h <= x_end; h++) {
                 for (int k = y_start; k <= y_end; k++) {
@@ -183,17 +176,20 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
                     int c_obj = mpatch[c_point];
                     int t_obj = mpatch[t_point];
 
-                    double c_val = input[c_point];
-                    double t_val = input[t_point];
+                    double c_val = inputArray[c_point];
+                    double t_val = inputArray[t_point];
 
-                    //int c_obj_val = input[c_point];
-                    //int t_obj_val = input[t_point];
+                    int c_noise = noise[c_point];
+                    int t_noise = noise[t_point];
 
-                    if (c_point != t_point && c_obj != t_obj && c_val > t_val) {
+                    //int c_obj_val = inputArray[c_point];
+                    //int t_obj_val = inputArray[t_point];
+
+                    if (c_point != t_point && c_obj != t_obj && ((c_val > t_val) || ((c_val == t_val) && (c_noise > t_noise)))) {
                         u_points = realloc(u_points, (1 + num_u_points) * sizeof(UPoint));
                         
                         u_point = t_point;
-                        u_val = input[u_point];
+                        u_val = inputArray[u_point];
 
                         // Store information about u_point in the u_points array
                         u_points[num_u_points].u_val = u_val;
@@ -201,9 +197,7 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
                         u_points[num_u_points].c_point = c_point;
                         u_points[num_u_points].u_point = u_point;
 
-                        num_u_points++;
-
-                        
+                        num_u_points++;           
                         
                     }
                 }
@@ -215,7 +209,7 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
     qsort(u_points, num_u_points, sizeof(*u_points), compareUPoints);
 
     // Create an array to store information about dgm
-    float *dgm = (float *)malloc(2 * sizeof(float));
+    double *dgm = (double *)malloc(2 * sizeof(double));
     int num_dgm = 0;
    
     // Find dgm
@@ -234,23 +228,41 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
         }
     
         if (c_obj != u_obj) {
-            if (input[c_obj] > input[u_obj]) {
+            if (inputArray[c_obj] > inputArray[u_obj]) {
                 mpatch[u_obj] = c_obj;
-                if (fabs(input[u_obj] - input[u_point]) > 0.1) {
+                if (fabs(inputArray[u_obj] - inputArray[u_point]) > 0) {
                     dgm[num_dgm] = inputArray[u_obj];
                     dgm[(num_dgm + 1)] = inputArray[u_point];
                     num_dgm = num_dgm + 2;
-                    dgm = realloc(dgm, (num_dgm + 2) * sizeof(float));
-                    
+                    dgm = realloc(dgm, (num_dgm + 2) * sizeof(double));
                 }
-            } else {
+            } else if (inputArray[c_obj] < inputArray[u_obj]) {
                 mpatch[c_obj] = u_obj;
-                if (fabs(input[c_obj] - input[u_point]) > 0.1) {
+                if (fabs(inputArray[c_obj] - inputArray[u_point]) > 0) {
                     dgm[num_dgm]  = inputArray[c_obj];
                     dgm[(num_dgm + 1)] = inputArray[u_point];
                     num_dgm = num_dgm + 2;
-                    dgm = realloc(dgm, (num_dgm + 2) * sizeof(float));
+                    dgm = realloc(dgm, (num_dgm + 2) * sizeof(double));
                 }
+            } else{
+                if (noise[c_obj] > noise[u_obj]){
+                    mpatch[u_obj] = c_obj;
+                    if (fabs(inputArray[u_obj] - inputArray[u_point]) > 0) {
+                        dgm[num_dgm] = inputArray[u_obj];
+                        dgm[(num_dgm + 1)] = inputArray[u_point];
+                        num_dgm = num_dgm + 2;
+                        dgm = realloc(dgm, (num_dgm + 2) * sizeof(double));
+                    }
+                }else{
+                    mpatch[c_obj] = u_obj;
+                    if (fabs(inputArray[c_obj] - inputArray[u_point]) > 0) {
+                        dgm[num_dgm]  = inputArray[c_obj];
+                        dgm[(num_dgm + 1)] = inputArray[u_point];
+                        num_dgm = num_dgm + 2;
+                        dgm = realloc(dgm, (num_dgm + 2) * sizeof(double));
+                    }
+                }
+                
             }
         }
     }
@@ -261,7 +273,7 @@ Result calculatePH(float *inputArray, int numRows, int numCols) {
     num_dgm = num_dgm + 2;
 
     //Clean
-    free(input);
+    free(noise);
     free(mpatch);
     free(u_points);
 
