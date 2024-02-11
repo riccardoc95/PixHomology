@@ -4,5 +4,5 @@ import pixhomology as ph
 
 if __name__ == "__main__":
     img = np.random.rand(100,100).astype(np.float32)
-    dgm = ph.calculatePH(img)
+    dgm = ph.computePH(img)
     print(dgm)
