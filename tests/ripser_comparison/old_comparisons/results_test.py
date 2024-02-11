@@ -18,7 +18,7 @@ def results_test(dataset):
         dgm_rips[dgm_rips == -np.inf] = image.min()
         dgm_rips = dgm_rips.astype(np.float32)
     
-        dgm_pixh = ph.calculatePH(image.copy())
+        dgm_pixh = ph.computePH(image.copy())
         dgm_pixh = dgm_pixh.astype(np.float32)
 
         dgm_rips = np.around(dgm_rips, 4)
