@@ -36,7 +36,7 @@ def results_test(dataset, dataset_name='', idx=0):
 
         tracemalloc.start()
         start = time.time()
-        dgm_pixh = ph.calculatePH(image)
+        dgm_pixh = ph.computePH(image)
         pixh_time.append(time.time() - start)
         pixh_mem.append(tracemalloc.get_traced_memory()[1])
         tracemalloc.stop()
