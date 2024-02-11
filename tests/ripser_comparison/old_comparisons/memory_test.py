@@ -21,7 +21,7 @@ def memory_test(dataset):
         tracemalloc.stop()
     
         tracemalloc.start()
-        dgm_pixh = ph.calculatePH(image.copy())
+        dgm_pixh = ph.computePH(image.copy())
         pixh_mem.append(tracemalloc.get_traced_memory()[1])
         tracemalloc.stop()
     
