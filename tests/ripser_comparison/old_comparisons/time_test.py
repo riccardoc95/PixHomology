@@ -20,7 +20,7 @@ def time_test(dataset):
         rips_time.append(time.time() - start)
 
         start = time.time()
-        dgm_pixh = ph.calculatePH(image.copy())
+        dgm_pixh = ph.computePH(image.copy())
         pixh_time.append(time.time() - start)
         
     
