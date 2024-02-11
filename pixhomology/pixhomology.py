@@ -9,7 +9,7 @@ class Result(ctypes.Structure):
                 ("length", ctypes.c_int)]
 
 # Define the C PixHomology function
-print(Path(__file__).parent.parent)
+#print(Path(__file__).parent.parent)
 
 #pixhom = np.ctypeslib.load_library('pixhomology', Path(__file__).parent.parent)
 #pixhom = np.ctypeslib.load_library('libpixhom', Path(__file__).parent) 
