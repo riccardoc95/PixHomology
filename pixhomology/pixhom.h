@@ -33,9 +33,11 @@ typedef struct {
     int argmax;
 } MinMaxIndices;
 
+// Function to generate random normal dist from uniform with Box–Muller transform
+float gauss(void);
 
 // Function to find Argmin and Argmax of array
-MinMaxIndices findArgminArgmax(const double *arr, const int *noise, int size);
+MinMaxIndices findArgminArgmax(const double *arr, const float *noise, int size);
 
 // Function to compare UPoints for qsort
 int compareUPoints(const void *a, const void *b);
