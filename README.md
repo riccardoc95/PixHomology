@@ -26,6 +26,7 @@ SOON
 ```
 
 ### Building
+> To build the source code, ensure you have CMake installed on your system. You can download CMake from [cmake.org](cmake.org) or install it using your package manager. 
 To install PixHomology, follow these steps:
 
 ```bash
