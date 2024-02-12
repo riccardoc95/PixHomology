@@ -14,6 +14,12 @@ PixHomology is an open-source software for image processing and analysis focused
   
 ## Installation
 
+**Optional** (create new environment):
+```bash
+conda create -n pixh python=3.11
+conda activate pixh
+```
+
 ### Python package
 ```bash
 SOON
@@ -42,7 +48,7 @@ python test.py
 ```python
 import pixhomology as px
 image = np.random.rand(10,10)
-dgm = px.compute(image)
+dgm = px.computePH(image)
 ...
 ```
 For more examples and detailed usage instructions, check out the [Usage Guide](docs/usage.md).
