@@ -8,9 +8,17 @@
 #define MODULE_API_EXPORTS
 #include "pixhom.h"
 
+// Function to generate random normal dist from uniform with Box–Muller transform
+float gauss(void){
+    float x = (float)rand() / RAND_MAX;
+    float y = (float)rand() / RAND_MAX;
+    float z = sqrt(-2 * log(x)) * cos(2 * 3.14 * y);
+    return z;
+}
+
 
 // Function to find Argmin and Argmax of array
-MinMaxIndices findArgminArgmax(const double *arr, const int *noise, int size) {
+MinMaxIndices findArgminArgmax(const double *arr, const float *noise, int size) {
     MinMaxIndices result;
 
     if (size == 0) {
@@ -90,11 +98,11 @@ MODULE_API Result computePH(double *inputArray, int numRows, int numCols) {
     //Intializes random number generator
     time_t t;
     srand((unsigned) time(&t));
-    
+
     // Input array for noise
-    int *noise = malloc(numRows * numCols * sizeof(int));
+    float *noise = malloc(numRows * numCols * sizeof(float));
     for (int i = 0; i < numRows * numCols; i++) { 
-        noise[i] = rand();
+        noise[i] = gauss();
     }
 
     // Calculate Argmin and Argmax
@@ -179,8 +187,8 @@ MODULE_API Result computePH(double *inputArray, int numRows, int numCols) {
                     double c_val = inputArray[c_point];
                     double t_val = inputArray[t_point];
 
-                    int c_noise = noise[c_point];
-                    int t_noise = noise[t_point];
+                    float c_noise = noise[c_point];
+                    float t_noise = noise[t_point];
 
                     //int c_obj_val = inputArray[c_point];
                     //int t_obj_val = inputArray[t_point];
