@@ -9,10 +9,26 @@
 #include "pixhom.h"
 
 // Function to generate random normal dist from uniform with Box–Muller transform
-float gauss(void){
-    float x = (float)rand() / RAND_MAX;
-    float y = (float)rand() / RAND_MAX;
-    float z = sqrt(-2 * log(x)) * cos(2 * 3.14 * y);
+float norm() {
+    static int initialized = 0;
+    static float z;
+    float u1, u2;
+
+    if (!initialized) {
+        time_t t;
+        srand((unsigned) time(&t));
+        initialized = 1;
+    }
+
+    do {
+        u1 = (float)rand() / ((float)RAND_MAX);
+    } while (u1 < 0.000001 || u1 > 0.999999);
+    do {
+        u2 = (float)rand() / ((float)RAND_MAX + 10);
+    } while (u2 < 0.000001 || u2 > 0.999999);
+
+    z = sqrt(-2 * log(u1)) * cos(2 * 3.141592 * u2);
+
     return z;
 }
 
@@ -95,14 +111,10 @@ int compareUPoints(const void *a, const void *b) {
 // Persistent Homology dimension 0 function
 MODULE_API Result computePH(double *inputArray, int numRows, int numCols) {
 
-    //Intializes random number generator
-    time_t t;
-    srand((unsigned) time(&t));
-
     // Input array for noise
     float *noise = malloc(numRows * numCols * sizeof(float));
     for (int i = 0; i < numRows * numCols; i++) { 
-        noise[i] = gauss();
+        noise[i] = norm();
     }
 
     // Calculate Argmin and Argmax
