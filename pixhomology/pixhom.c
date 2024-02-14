@@ -8,7 +8,7 @@
 #define MODULE_API_EXPORTS
 #include "pixhom.h"
 
-// Function to generate random normal dist from uniform with Box–Muller transform
+// Function to generate random normal dist from uniform with Marsaglia and Bray method
 double randn(double mu, double sigma)
 {
     double U1, U2, W, mult;
