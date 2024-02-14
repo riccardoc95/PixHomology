@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0)
 project(pixhom)
 
 # Define your source files
-set(SOURCES "src/pixhom.c")
+set(SOURCES "pixhomology/pixhom.c")
 
 # Add a shared library target
 add_library(pixhom SHARED ${SOURCES})
