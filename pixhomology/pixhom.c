@@ -96,19 +96,7 @@ int compareUPoints(const void *a, const void *b) {
         }else if (p2->c_val < p1->c_val){
             return -1;
         }else{
-            if (p2->c_point > p1->c_point){
-                return 1;
-            }else if (p2->c_point < p1->c_point){
-                return -1;
-            }else{
-                if (p2->u_point > p1->u_point){
-                    return 1;
-                }else if (p2->u_point < p1->u_point){
-                    return -1;
-                }else{
-                    return 0;
-                }
-            }
+            return 0;    
         }
     }
 }
