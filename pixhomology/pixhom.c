@@ -116,6 +116,9 @@ int compareUPoints(const void *a, const void *b) {
 
 // Persistent Homology dimension 0 function
 MODULE_API Result computePH(double *inputArray, int numRows, int numCols) {
+    // Set random seed
+    time_t t;
+    srand((unsigned) time(&t));
 
     // Input array for noise
     double *noise = malloc(numRows * numCols * sizeof(double));
