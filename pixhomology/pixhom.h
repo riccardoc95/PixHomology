@@ -33,7 +33,7 @@ typedef struct {
     int argmax;
 } MinMaxIndices;
 
-// Function to generate random normal dist from uniform with Box–Muller transform
+// Function to generate random normal dist from uniform with Marsaglia and Bray method
 double randn(double mu, double sigma);
 
 // Function to find Argmin and Argmax of array
