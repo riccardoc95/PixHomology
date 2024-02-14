@@ -9,32 +9,38 @@
 #include "pixhom.h"
 
 // Function to generate random normal dist from uniform with Box–Muller transform
-float norm() {
-    static int initialized = 0;
-    static float z;
-    float u1, u2;
-
-    if (!initialized) {
-        time_t t;
-        srand((unsigned) time(&t));
-        initialized = 1;
+double randn(double mu, double sigma)
+{
+    double U1, U2, W, mult;
+    static double X1, X2;
+    static int call = 0;
+    
+    if (call == 1)
+    {
+        call = !call;
+        return (mu + sigma * (double) X2);
     }
-
-    do {
-        u1 = (float)rand() / ((float)RAND_MAX);
-    } while (u1 < 0.000001 || u1 > 0.999999);
-    do {
-        u2 = (float)rand() / ((float)RAND_MAX + 10);
-    } while (u2 < 0.000001 || u2 > 0.999999);
-
-    z = sqrt(-2 * log(u1)) * cos(2 * 3.141592 * u2);
-
-    return z;
+    
+    do
+    {
+        U1 = -1 + ((double) rand () / RAND_MAX) * 2;
+        U2 = -1 + ((double) rand () / RAND_MAX) * 2;
+        W = pow (U1, 2) + pow (U2, 2);
+    }
+    while (W >= 1 || W == 0);
+    
+    mult = sqrt ((-2 * log (W)) / W);
+    X1 = U1 * mult;
+    X2 = U2 * mult;
+    
+    call = !call;
+    
+    return (mu + sigma * (double) X1);
 }
 
 
 // Function to find Argmin and Argmax of array
-MinMaxIndices findArgminArgmax(const double *arr, const float *noise, int size) {
+MinMaxIndices findArgminArgmax(const double *arr, const double *noise, int size) {
     MinMaxIndices result;
 
     if (size == 0) {
@@ -112,9 +118,9 @@ int compareUPoints(const void *a, const void *b) {
 MODULE_API Result computePH(double *inputArray, int numRows, int numCols) {
 
     // Input array for noise
-    float *noise = malloc(numRows * numCols * sizeof(float));
+    double *noise = malloc(numRows * numCols * sizeof(double));
     for (int i = 0; i < numRows * numCols; i++) { 
-        noise[i] = norm();
+        noise[i] = randn(0, 1);
     }
 
     // Calculate Argmin and Argmax
@@ -199,8 +205,8 @@ MODULE_API Result computePH(double *inputArray, int numRows, int numCols) {
                     double c_val = inputArray[c_point];
                     double t_val = inputArray[t_point];
 
-                    float c_noise = noise[c_point];
-                    float t_noise = noise[t_point];
+                    double c_noise = noise[c_point];
+                    double t_noise = noise[t_point];
 
                     //int c_obj_val = inputArray[c_point];
                     //int t_obj_val = inputArray[t_point];
