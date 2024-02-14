@@ -1,1 +1,1 @@
-from .pixhomology import computePH
+from .pixhom import computePH
