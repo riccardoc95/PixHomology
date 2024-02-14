@@ -37,7 +37,7 @@ typedef struct {
 double randn(double mu, double sigma);
 
 // Function to find Argmin and Argmax of array
-MinMaxIndices findArgminArgmax(const double *arr, const float *noise, int size);
+MinMaxIndices findArgminArgmax(const double *arr, const double *noise, int size);
 
 // Function to compare UPoints for qsort
 int compareUPoints(const void *a, const void *b);
