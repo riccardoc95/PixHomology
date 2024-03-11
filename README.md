@@ -1,4 +1,5 @@
-![Alt text](https://github.com/riccardoc95/PixHomology/blob/main/docs/logo_color.png)
+![Light](https://github.com/riccardoc95/PixHomology/blob/main/docs/logo_color_light.png#gh-light-mode-only)
+![Dark](https://github.com/riccardoc95/PixHomology/blob/main/docs/logo_color_dark.png#gh-dark-mode-only)
 
 # Calculation of Persistent Homology for Pixel Data
 [![version](https://img.shields.io/badge/version-0.0.1alpha-yellow.svg)](https://github.com/riccardoc95/PixHomology/releases/tag/alpha_v0.0.1)
