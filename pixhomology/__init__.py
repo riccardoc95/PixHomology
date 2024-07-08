@@ -1,1 +1,0 @@
-from .pixhom import computePH
