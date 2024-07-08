@@ -1,7 +1,6 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include "pixhom.hpp"
-#include "utils.hpp"
 
 #define STRINGIFY(x) #x
 #define MACRO_STRINGIFY(x) STRINGIFY(x)
@@ -12,33 +11,6 @@ void change_sign(double* arr, size_t size) {
     for (size_t i = 0; i < size; ++i) {
         arr[i] = -arr[i];
     }
-}
-
-py::object py_plot(py::array_t<double> x, py::array_t<double> y) {
-    // Ensure the input arrays are contiguous and 1D
-    py::buffer_info x_buf = x.request();
-    py::buffer_info y_buf = y.request();
-    if (x_buf.ndim != 1 || y_buf.ndim != 1) {
-        throw std::runtime_error("Input should be 1D NumPy arrays");
-    }
-
-    double* x_ptr = static_cast<double*>(x_buf.ptr);
-    double* y_ptr = static_cast<double*>(y_buf.ptr);
-    int x_size = x_buf.shape[0];
-    int y_size = y_buf.shape[0];
-
-    if (x_size != y_size) {
-        throw std::runtime_error("Input arrays should have the same size");
-    }
-
-    // Call the scatterPlot function
-    try {
-        scatterPlot(std::vector<double>(x_ptr, x_ptr + x_size), std::vector<double>(y_ptr, y_ptr + y_size));
-    } catch (const std::exception& e) {
-        throw std::runtime_error(std::string("Error in scatterPlot: ") + e.what());
-    }
-
-    return py::none();
 }
 
 
@@ -139,9 +111,6 @@ PYBIND11_MODULE(pixhomology, m) {
       py::arg("return_index") = false,
       py::arg("maxdim") = 0);
 
-
-    m.def("plot", &py_plot,
-          "A function that computes zero-dimensional PH on 2D image data");
     #ifdef VERSION_INFO
         m.attr("__version__") = MACRO_STRINGIFY(VERSION_INFO);
     #else
