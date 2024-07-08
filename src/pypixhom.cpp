@@ -166,5 +166,3 @@ PYBIND11_MODULE(pixhomology, m) {
         m.attr("__version__") = "dev";
     #endif
 }
-
-//
