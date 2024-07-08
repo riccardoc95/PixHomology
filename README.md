@@ -54,7 +54,7 @@ For more examples and detailed usage instructions, check out the [Usage Guide](d
 
 ## Documentation
 
-Comprehensive documentation is available in the [Docs](docs/) directory. This includes installation guides, usage examples, and API references.
+Comprehensive (documentation)[https://riccardoc95.github.io/PixHomology/] includes installation guides, usage examples, and API references is available.
 
 ## Contributing
 
