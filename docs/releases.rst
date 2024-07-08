@@ -1,6 +1,22 @@
 Release Notes
 ============================
 
+Release 0.1.0
+*************
+Second release of PixHomology.
+
+Features:
+
+- Visualization module.
+
+Bug Fixes:
+
+- N/A (initial release)
+
+Known Issues:
+
+- No known issues at this time.
+
 
 Release 0.0.1
 *************
