@@ -127,7 +127,7 @@ class CMakeBuild(build_ext):
 # logic and declaration, and simpler if you include description/version in a file.
 setup(
     name="pixhomology",
-    version="0.1.0",
+    version="0.1.1",
     author="Riccardo Ceccaroni",
     author_email="riccardo.ceccaroni.95@gmail.com",
     description="PixHomology",

@@ -1,9 +1,8 @@
 Release Notes
 ============================
 
-Release 0.1.0
+Release 0.1.1
 *************
-Second release of PixHomology.
 
 Features:
 
