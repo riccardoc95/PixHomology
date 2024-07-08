@@ -65,5 +65,3 @@ We welcome contributions from the community. If you want to contribute to PixHom
 ## License
 
 PixHomology is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute it as per the terms of the license.
-
----

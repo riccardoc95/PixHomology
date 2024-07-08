@@ -1395,8 +1395,6 @@ Result computePH(double *inputArr, int numR, int numC) {
     res.posix = dgm_pos;
     res.length = num_dgm;
 
-
-    
     return res; 
     
 }
