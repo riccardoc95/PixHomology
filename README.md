@@ -55,13 +55,7 @@ dgm = px.computePH(image)
 ```
 For more examples and detailed usage instructions, check out the [Usage Guide](docs/usage.rst).
 
-- To test the performance of PixHomology:
-> Please note that the installation of other packages and datasets download are required
- ```bash
-cd tests/ripser_comparison
-pip install -r requirements.txt
-python test.py
-```
+- To test the performance of PixHomology follow the instructions from [this repository](https://github.com/riccardoc95/TS2Benchmark).
 
 ## Documentation
 
