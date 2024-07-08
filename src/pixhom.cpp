@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <numeric>
+#include <cmath>
 #include <vector>
 
 #include "pixhom.hpp"
