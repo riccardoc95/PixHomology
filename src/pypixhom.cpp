@@ -43,14 +43,28 @@ py::object py_plot_dgm(py::array_t<double> input_array) {
 
 
 py::object py_computePH(py::array_t<double> input_array, bool return_index = false, int maxdim = 0) {
-    // Ensure the input array is contiguous and 2D
+    // Ensure the input array is contiguous and 1D/2D
     py::buffer_info buf_info = input_array.request();
-    if (buf_info.ndim != 2) {
-        throw std::runtime_error("Input should be a 2D NumPy array");
+    int numRows;
+    int numCols;
+    if (buf_info.ndim == 2) {
+        if (buf_info.shape[0] == 1 & buf_info.shape[1] != 1){
+            numRows = buf_info.shape[1];
+            numCols = 1;
+        } else{
+            numRows = buf_info.shape[0];
+            numCols = buf_info.shape[1];
+        }
+    } else if (buf_info.ndim == 1){
+        numRows = buf_info.shape[0];
+        numCols = 1;
+    }else{
+        throw std::runtime_error("Input should be a 1D/2D NumPy array");
     }
 
-    int numRows = buf_info.shape[0];
-    int numCols = buf_info.shape[1];
+
+
+
 
     // Call the computePH function (dim = 0)
     Result res;
@@ -123,12 +137,12 @@ py::object py_computePH(py::array_t<double> input_array, bool return_index = fal
 }
 
 PYBIND11_MODULE(pixhomology, m) {
-    m.doc() = "PixHomology is an open-source software for image processing and analysis focused on persistent homology computation. It provides a set of tools and algorithms to explore the topological features of 2D images, enabling users to extract meaningful information about the underlying structures."; // Optional module docstring
+    m.doc() = "PixHomology is an open-source software for image processing and analysis focused on persistent homology computation. It provides a set of tools and algorithms to explore the topological features of 1D series and 2D images, enabling users to extract meaningful information about the underlying structures."; // Optional module docstring
 
     m.def("computePH", &py_computePH,
-      "A function that computes Persistent Homology (PH) on 2D image data.\n\n"
+      "A function that computes Persistent Homology (PH) on 1D series or 2D image data.\n\n"
       "Parameters:\n"
-      "  input_array (numpy.ndarray): A 2D array representing the input image data on which Persistent Homology is to be computed.\n"
+      "  input_array (numpy.ndarray): A 1D/2D array representing the input image data on which Persistent Homology is to be computed.\n"
       "  return_index (bool, optional): A flag indicating whether to return indices of the features. Defaults to False.\n"
       "  maxdim (int, optional): The maximum dimension of homology to compute. Defaults to 0.\n\n"
       "Returns:\n"
