@@ -1,6 +1,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include "pixhom.hpp"
+#include "utils.hpp"
 
 #define STRINGIFY(x) #x
 #define MACRO_STRINGIFY(x) STRINGIFY(x)
@@ -11,6 +12,33 @@ void change_sign(double* arr, size_t size) {
     for (size_t i = 0; i < size; ++i) {
         arr[i] = -arr[i];
     }
+}
+
+py::object py_plot_dgm(py::array_t<double> input_array) {
+    // Check the input dimensions
+    if (input_array.ndim() != 2 || input_array.shape(1) != 2) {
+        throw std::runtime_error("Input should be a 2D numpy array with shape (N, 2)");
+    }
+
+    // Extract data from the input array
+    auto buf = input_array.request();
+    double* ptr = static_cast<double*>(buf.ptr);
+    size_t num_points = buf.shape[0];
+
+    std::vector<double> x(num_points), y(num_points);
+    for (size_t i = 0; i < num_points; ++i) {
+        x[i] = ptr[i * 2];
+        y[i] = ptr[i * 2 + 1];
+    }
+
+    // Call the scatterPlot function
+    try {
+        visualizePH(x, y);
+    } catch (const std::exception& e) {
+        throw std::runtime_error(std::string("Error in scatterPlot: ") + e.what());
+    }
+
+    return py::none();
 }
 
 
@@ -111,6 +139,13 @@ PYBIND11_MODULE(pixhomology, m) {
       py::arg("return_index") = false,
       py::arg("maxdim") = 0);
 
+
+    m.def("plotDGM", &py_plot_dgm,
+          "A function that takes a 2D NumPy array (DGM) with dimensions (N, 2) as input and plots a persistence diagram. The first column of the input array corresponds to the x values (birth times), and the second column corresponds to the y values (death times).\n\n"
+          "Parameters:\n"
+          "  input_array (numpy.ndarray): A 2D array representing the persistence diagram (DGM) to be plotted.\n\n"
+          "Returns:\n"
+          "  None: The function plots the persistence diagram using matplotlib.");
     #ifdef VERSION_INFO
         m.attr("__version__") = MACRO_STRINGIFY(VERSION_INFO);
     #else
