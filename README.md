@@ -39,11 +39,6 @@ pip install .
 For detailed installation instructions, please refer to the [Installation Guide](docs/installation.rst).
 
 ## Usage
-- To test the package:
-```bash
-cd tests
-python test.py
-```
 
 - Here is a basic example of using PixHomology in Python:
 
