@@ -33,6 +33,8 @@ To install PixHomology, follow these steps:
 ```bash
 git clone https://github.com/riccardoc95/PixHomology.git
 cd PixHomology
+git submodule init
+git submodule update
 pip install .
 ```
 
