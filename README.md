@@ -23,7 +23,7 @@ conda activate pixh
 
 ### Python package
 ```bash
-SOON
+pip install pixhomology
 ```
 
 ### Building
