@@ -1,6 +1,9 @@
 Documentation
 ============================
 
+.. figure:: images/logo_color_light.png
+    :align: center
+
 Contents:
 
 .. toctree::
@@ -12,4 +15,3 @@ Contents:
    usage
    releases
    faq
-
