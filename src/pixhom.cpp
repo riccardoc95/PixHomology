@@ -11,7 +11,7 @@ int i = 0;
 int j = 0;
 int changed = 0;
 
-int numRows = 0; 
+int numRows = 0;
 int numCols = 0;
 int num_u_points = 0;
 int num_dgm = 0;
@@ -38,12 +38,12 @@ Result res;
 
 
 // Function to compare UPoints for qsort
-bool compareUPoints(const UPoint& p1, const UPoint& p2) { 
+bool compareUPoints(const UPoint& p1, const UPoint& p2) {
     double p1_u_val = inputArray[p1.u_point];
     double p2_u_val = inputArray[p2.u_point];
     double p1_c_val = inputArray[p1.c_point];
     double p2_c_val = inputArray[p2.c_point];
-    
+
     if (p2_u_val > p1_u_val){
         return false;
     }else if (p2_u_val< p1_u_val){
@@ -66,7 +66,7 @@ Result computePH(double *inputArr, int numR, int numC) {
     inputArray = inputArr;
     numRows = numR;
     numCols = numC;
-    
+
     // Calculate Argmin and Argmax
     if ((numRows * numCols) != 0) {
         min = inputArray[0];
@@ -86,7 +86,7 @@ Result computePH(double *inputArr, int numR, int numC) {
             }
         }
     }
-    
+
     // Set up mpatch array
     for (int i = 0; i < numRows * numCols; i++) {
         mpatch.push_back(i);
@@ -439,7 +439,7 @@ Result computePH(double *inputArr, int numR, int numC) {
                         mpatch[c_point] = c_point;
                     }
                 }
-            } else if ((i == 0) && (j == 0)){ 
+            } else if ((i == 0) && (j == 0)){
                 t_point = ((i) * numCols + (j + 1));
                 input = inputArray[t_point];
                 if (localmax < input) {
@@ -513,7 +513,7 @@ Result computePH(double *inputArr, int numR, int numC) {
                         mpatch[c_point] = c_point;
                     }
                 }
-            } else if ((i == numRows - 1) && (j == 0)){ 
+            } else if ((i == numRows - 1) && (j == 0)){
                 t_point = ((i - 1) * numCols + (j));
                 input = inputArray[t_point];
                 if (localmax < input) {
@@ -587,11 +587,11 @@ Result computePH(double *inputArr, int numR, int numC) {
                         mpatch[c_point] = c_point;
                     }
                 }
-            } 
+            }
 
         }
     }
-    
+
     // Second pass to update the mpatch array
     while (1) {
         changed = 0;
@@ -1097,7 +1097,7 @@ Result computePH(double *inputArr, int numR, int numC) {
                     num_u_points = num_u_points + 1;
 
                 }
-            } else if ((i == 0) && (j == 0)){ 
+            } else if ((i == 0) && (j == 0)){
                 t_point = ((i) * numCols + (j + 1));
                 c_obj = mpatch[c_point];
                 t_obj = mpatch[t_point];
@@ -1201,7 +1201,7 @@ Result computePH(double *inputArr, int numR, int numC) {
                     num_u_points = num_u_points + 1;
 
                 }
-            } else if ((i == numRows - 1) && (j == 0)){ 
+            } else if ((i == numRows - 1) && (j == 0)){
                 t_point = ((i - 1) * numCols + (j));
                 c_obj = mpatch[c_point];
                 t_obj = mpatch[t_point];
@@ -1305,7 +1305,7 @@ Result computePH(double *inputArr, int numR, int numC) {
                     num_u_points = num_u_points + 1;
 
                 }
-            } 
+            }
 
         }
     }
@@ -1315,7 +1315,7 @@ Result computePH(double *inputArr, int numR, int numC) {
 
     // Information about dgm
     num_dgm = 0;
-   
+
     // Find dgm
     for (i = 0; i < num_u_points; i++) {
         c_point = uPoints[i].c_point;
@@ -1330,7 +1330,7 @@ Result computePH(double *inputArr, int numR, int numC) {
         while (t_obj != mpatch[t_obj]) {
             t_obj = mpatch[t_obj];
         }
-    
+
         if (c_obj != t_obj) {
             if (inputArray[c_obj] > inputArray[t_obj]) {
                 mpatch[t_obj] = c_obj;
@@ -1363,7 +1363,7 @@ Result computePH(double *inputArr, int numR, int numC) {
 
                         dgm_pos.push_back(t_obj);
                         dgm_pos.push_back(t_point);
-                        
+
                         num_dgm = num_dgm + 2;
                     }
                 }else{
@@ -1374,11 +1374,11 @@ Result computePH(double *inputArr, int numR, int numC) {
 
                         dgm_pos.push_back(c_obj);
                         dgm_pos.push_back(t_point);
-                        
+
                         num_dgm = num_dgm + 2;
                     }
                 }
-                
+
             }
         }
     }
@@ -1388,15 +1388,15 @@ Result computePH(double *inputArr, int numR, int numC) {
     dgm.push_back(min);
     dgm_pos.push_back(argmax);
     dgm_pos.push_back(argmin);
-    
+
     num_dgm = num_dgm + 2;
 
     res.data = dgm;
     res.posix = dgm_pos;
     res.length = num_dgm;
 
-    return res; 
-    
+    return res;
+
 }
 
 void freemem(){
