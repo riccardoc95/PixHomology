@@ -131,7 +131,7 @@ setup(
     author="Riccardo Ceccaroni",
     author_email="riccardo.ceccaroni.95@gmail.com",
     description="PixHomology",
-    long_description="",
+    long_description="PixHomology is an open-source software for image processing and analysis focused on persistent homology computation. It provides a set of tools and algorithms to explore the topological features of 2D images, enabling users to extract meaningful information about the underlying structures.",
     ext_modules=[CMakeExtension("pixhomology")],
     cmdclass={"build_ext": CMakeBuild},
     zip_safe=False,
