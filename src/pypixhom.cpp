@@ -14,14 +14,14 @@ void change_sign(double* arr, size_t size) {
     }
 }
 
-py::object py_plot_dgm(py::array_t<double> input_array) {
+py::object py_plot_dgm(py::array_t<double> dgm) {
     // Check the input dimensions
-    if (input_array.ndim() != 2 || input_array.shape(1) != 2) {
+    if (dgm.ndim() != 2 || dgm.shape(1) != 2) {
         throw std::runtime_error("Input should be a 2D numpy array with shape (N, 2)");
     }
 
     // Extract data from the input array
-    auto buf = input_array.request();
+    auto buf = dgm.request();
     double* ptr = static_cast<double*>(buf.ptr);
     size_t num_points = buf.shape[0];
 
@@ -100,7 +100,7 @@ py::object py_plot_img(py::array_t<double> input_array, py::array_t<double> inde
 }
 
 
-py::object py_computePH(py::array_t<double> input_array, bool return_index = false, int maxdim = 0) {
+py::object py_computePH(py::array_t<double> input_array, bool return_index = false, bool return_mapper = false, int maxdim = 0) {
     // Ensure the input array is contiguous and 1D/2D
     py::buffer_info buf_info = input_array.request();
     int numRows;
@@ -164,10 +164,14 @@ py::object py_computePH(py::array_t<double> input_array, bool return_index = fal
 
 
     if (maxdim == 0){
-        if (return_index) {
+        if (return_index && return_mapper) {
             return py::make_tuple(data_array_0, posix_array_0, mapper_0);
-        } else {
+        } else if (return_index) {
+            return py::make_tuple(data_array_0, posix_array_0);
+        } else if (return_mapper) {
             return py::make_tuple(data_array_0, mapper_0);
+        } else {
+            return data_array_0;
         }
     } else if(maxdim == 1){
         // Call the computePH function (dim = 0)
@@ -205,12 +209,15 @@ py::object py_computePH(py::array_t<double> input_array, bool return_index = fal
 
         freemem();
 
-        if (return_index) {
+        if (return_index && return_mapper) {
             return py::make_tuple(py::make_tuple(data_array_0, data_array_1), py::make_tuple(posix_array_0, posix_array_1), py::make_tuple(mapper_0, mapper_1));
-        } else {
+        } else if (return_index) {
+            return py::make_tuple(py::make_tuple(data_array_0, data_array_1), py::make_tuple(posix_array_0, posix_array_1));
+        } else if (return_mapper) {
             return py::make_tuple(py::make_tuple(data_array_0, data_array_1), py::make_tuple(mapper_0, mapper_1));
+        } else {
+            return py::make_tuple(py::make_tuple(data_array_0, data_array_1));
         }
-
     }
 }
 
@@ -222,6 +229,7 @@ PYBIND11_MODULE(pixhomology, m) {
       "Parameters:\n"
       "  input_array (numpy.ndarray): A 1D/2D array representing the input image data on which Persistent Homology is to be computed.\n"
       "  return_index (bool, optional): A flag indicating whether to return indices of the features. Defaults to False.\n"
+      "  return_mapper (bool, optional): A flag indicating whether to return the mapper of the features. Defaults to False.\n"
       "  maxdim (int, optional): The maximum dimension of homology to compute. Defaults to 0.\n\n"
       "Returns:\n"
       "  numpy.ndarray or tuple:\n"
@@ -229,15 +237,17 @@ PYBIND11_MODULE(pixhomology, m) {
       "    - indexes (numpy.ndarray or list of numpy.ndarray): If return_index=True. If maxdim=0, an (N, 4) array with x_birth, y_birth, x_death, y_death coordinates in pixels of dimension zero PH. If maxdim=1, a list of arrays for dimension 0 and dimension 1.",
       py::arg("input_array"),
       py::arg("return_index") = false,
+      py::arg("return_mapper") = false,
       py::arg("maxdim") = 0);
 
 
     m.def("plotDGM", &py_plot_dgm,
           "A function that takes a 2D NumPy array (DGM) with dimensions (N, 2) as input and plots a persistence diagram. The first column of the input array corresponds to the x values (birth times), and the second column corresponds to the y values (death times).\n\n"
           "Parameters:\n"
-          "  input_array (numpy.ndarray): A 2D array representing the persistence diagram (DGM) to be plotted.\n\n"
+          "  dgm (numpy.ndarray): A 2D array representing the persistence diagram (DGM) to be plotted.\n\n"
           "Returns:\n"
-          "  None: The function plots the persistence diagram using matplotlib.");
+          "  None: The function plots the persistence diagram using matplotlib.",
+          py::arg("dgm"));
 
     m.def("plotIMG", &py_plot_img,
           "A function that takes 2D NumPy arrays, image and DGM indexes, as input and plots image with birth and death points for each component.\n\n"
@@ -245,7 +255,9 @@ PYBIND11_MODULE(pixhomology, m) {
           "  image (numpy.ndarray): A 2D array representing the image.\n\n"
           "  indexes (numpy.ndarray): A 2D array with dim (N, 4) representing the DGM indexes.\n\n"
           "Returns:\n"
-          "  None: The function plots the image with the persistence information.");
+          "  None: The function plots the image with the persistence information.",
+          py::arg("image"),
+          py::arg("indexes"));
     #ifdef VERSION_INFO
         m.attr("__version__") = MACRO_STRINGIFY(VERSION_INFO);
     #else
