@@ -1,12 +1,13 @@
 #include <pybind11/pybind11.h>
+#include <pybind11/numpy.h>
 #include <pybind11/stl.h>
 #include <vector>
 
-#include "utils.hpp"
+#include "visual.hpp"
 
 namespace py = pybind11;
 
-void visualizePH(const std::vector<double>& birth, const std::vector<double>& death) {
+void plotDGM(const std::vector<double>& birth, const std::vector<double>& death) {
     // Import the matplotlib.pyplot module
     py::module_ plt = py::module_::import("matplotlib.pyplot");
     py::object scatter = plt.attr("scatter");
@@ -32,5 +33,36 @@ void visualizePH(const std::vector<double>& birth, const std::vector<double>& de
     plt.attr("title")("DGM Plot");
 
     plt.attr("show")();
+
+}
+
+void plotIMG(const std::vector<double>& img,
+             const int numRows,
+             const int numCols,
+             const std::vector<double>& x_birth,
+             const std::vector<double>& y_birth,
+             const std::vector<double>& x_death,
+             const std::vector<double>& y_death){
+    // Import the matplotlib.pyplot module
+    py::module_ plt = py::module_::import("matplotlib.pyplot");
+    py::object scatter = plt.attr("scatter");
+    py::object imshow = plt.attr("imshow");
+
+    // Plot the image
+    py::array_t<double> image({numRows, numCols});
+    auto data_buf = image.request();
+    std::copy(img.begin(), img.end(), (double *)data_buf.ptr);
+    imshow(image);
+
+    // Plot the scatter plot
+    scatter(x_birth, y_birth);
+    scatter(x_death, y_death);
+
+    // Add properties and title
+    plt.attr("axis")("off");
+    plt.attr("title")("Image with birth and death points");
+
+    plt.attr("show")();
+
 
 }

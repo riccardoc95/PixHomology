@@ -1,7 +1,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include "pixhom.hpp"
-#include "utils.hpp"
+#include "visual.hpp"
 
 #define STRINGIFY(x) #x
 #define MACRO_STRINGIFY(x) STRINGIFY(x)
@@ -33,9 +33,67 @@ py::object py_plot_dgm(py::array_t<double> input_array) {
 
     // Call the scatterPlot function
     try {
-        visualizePH(x, y);
+        plotDGM(x, y);
     } catch (const std::exception& e) {
-        throw std::runtime_error(std::string("Error in scatterPlot: ") + e.what());
+        throw std::runtime_error(std::string("Error in py_plot_dgm: ") + e.what());
+    }
+
+    return py::none();
+}
+
+
+
+py::object py_plot_img(py::array_t<double> input_array, py::array_t<double> indexes) {
+    // Check the input dimensions
+    if (indexes.ndim() != 2 || indexes.shape(1) != 4) {
+        throw std::runtime_error("Input should be a 2D numpy array with shape (N, 2)");
+    }
+
+    // Ensure the input array is contiguous and 1D/2D
+    py::buffer_info buf_info = input_array.request();
+    int numRows;
+    int numCols;
+    if (buf_info.ndim == 2) {
+        if (buf_info.shape[0] == 1 & buf_info.shape[1] != 1){
+            numRows = buf_info.shape[1];
+            numCols = 1;
+        } else{
+            numRows = buf_info.shape[0];
+            numCols = buf_info.shape[1];
+        }
+    } else if (buf_info.ndim == 1){
+        numRows = buf_info.shape[0];
+        numCols = 1;
+    }else{
+        throw std::runtime_error("Input should be a 1D/2D NumPy array");
+    }
+
+    // Extract data from the input array
+    auto buf_img = input_array.request();
+    double* ptr_img = static_cast<double*>(buf_img.ptr);
+
+    std::vector<double> img(numRows * numCols);
+    for (size_t i = 0; i < numRows * numCols; ++i) {
+        img[i] = ptr_img[i];
+    }
+
+    auto buf_idx = indexes.request();
+    double* ptr_idx = static_cast<double*>(buf_idx.ptr);
+    size_t num_points = buf_idx.shape[0];
+
+    std::vector<double> x_birth(num_points), y_birth(num_points), x_death(num_points), y_death(num_points);
+    for (size_t i = 0; i < num_points; ++i) {
+        x_birth[i] = ptr_idx[i * 4];
+        y_birth[i] = ptr_idx[i * 4 + 1];
+        x_death[i] = ptr_idx[i * 4 + 2];
+        y_death[i] = ptr_idx[i * 4 + 3];
+    }
+
+    // Call the scatterPlot function
+    try {
+        plotIMG(img, numRows, numCols, x_birth, y_birth, x_death, y_death);
+    } catch (const std::exception& e) {
+        throw std::runtime_error(std::string("Error in py_plot_img: ") + e.what());
     }
 
     return py::none();
@@ -61,10 +119,6 @@ py::object py_computePH(py::array_t<double> input_array, bool return_index = fal
     }else{
         throw std::runtime_error("Input should be a 1D/2D NumPy array");
     }
-
-
-
-
 
     // Call the computePH function (dim = 0)
     Result res;
@@ -160,6 +214,14 @@ PYBIND11_MODULE(pixhomology, m) {
           "  input_array (numpy.ndarray): A 2D array representing the persistence diagram (DGM) to be plotted.\n\n"
           "Returns:\n"
           "  None: The function plots the persistence diagram using matplotlib.");
+
+    m.def("plotIMG", &py_plot_img,
+          "A function that takes 2D NumPy arrays, image and DGM indexes, as input and plots image with birth and death points for each component.\n\n"
+          "Parameters:\n"
+          "  image (numpy.ndarray): A 2D array representing the image.\n\n"
+          "  indexes (numpy.ndarray): A 2D array with dim (N, 4) representing the DGM indexes.\n\n"
+          "Returns:\n"
+          "  None: The function plots the image with the persistence information.");
     #ifdef VERSION_INFO
         m.attr("__version__") = MACRO_STRINGIFY(VERSION_INFO);
     #else
