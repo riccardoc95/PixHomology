@@ -124,7 +124,7 @@ py::object py_computePH(py::array_t<double> input_array, bool return_index = fal
         maxdim = 0;
     }
 
-    // Call the computePH function (dim = 0).
+    // Call the computePH function (dim = 0)
     Result res;
     try {
         res = computePH((double*)buf_info.ptr, numRows, numCols);
