@@ -3,7 +3,7 @@
 #include <numeric>
 #include <cmath>
 #include <vector>
-//
+
 #include "pixhom.hpp"
 
 // Global Variables
