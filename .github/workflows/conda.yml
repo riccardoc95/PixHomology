@@ -1,11 +1,10 @@
 name: Conda
 
 on:
-  workflow_dispatch:
   push:
     branches:
-      - master
-  pull_request:
+      - main
+
 
 jobs:
   build:
