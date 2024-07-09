@@ -156,14 +156,18 @@ py::object py_computePH(py::array_t<double> input_array, bool return_index = fal
         }
     }
 
+    py::array_t<int> mapper_0({res.length / 2, 2});
+    auto mapper_0_buf = mapper_0.request();
+    std::copy(res.mapper.begin(), res.mapper.end(), (int *)mapper_0_buf.ptr);
+
     freemem();
 
 
     if (maxdim == 0){
         if (return_index) {
-            return py::make_tuple(data_array_0, posix_array_0);
+            return py::make_tuple(data_array_0, posix_array_0, mapper_0);
         } else {
-            return data_array_0;
+            return py::make_tuple(data_array_0, mapper_0);
         }
     } else if(maxdim == 1){
         // Call the computePH function (dim = 0)
@@ -194,12 +198,17 @@ py::object py_computePH(py::array_t<double> input_array, bool return_index = fal
             ((int*)posix_buf.ptr)[i + 3] = res.posix[i / 2] / numCols;
 
         }
+
+        py::array_t<int> mapper_1({res.length / 2, 2});
+        auto mapper_1_buf = mapper_1.request();
+        std::copy(res.mapper.begin(), res.mapper.end(), (int *)mapper_1_buf.ptr);
+
         freemem();
 
         if (return_index) {
-            return py::make_tuple(py::make_tuple(data_array_0, data_array_1), py::make_tuple(posix_array_0, posix_array_1));
+            return py::make_tuple(py::make_tuple(data_array_0, data_array_1), py::make_tuple(posix_array_0, posix_array_1), py::make_tuple(mapper_0, mapper_1));
         } else {
-            return py::make_tuple(data_array_0, data_array_1);
+            return py::make_tuple(py::make_tuple(data_array_0, data_array_1), py::make_tuple(mapper_0, mapper_1));
         }
 
     }

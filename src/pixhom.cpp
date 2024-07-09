@@ -33,6 +33,7 @@ double *inputArray = nullptr;
 std::vector <int> mpatch;
 std::vector <int> dgm_pos;
 std::vector <double> dgm;
+std::vector <int> mapper;
 std::vector <UPoint> uPoints;
 Result res;
 
@@ -1341,7 +1342,11 @@ Result computePH(double *inputArr, int numR, int numC) {
                     dgm_pos.push_back(t_obj);
                     dgm_pos.push_back(t_point);
 
+                    mapper.push_back(t_obj);
+                    mapper.push_back(c_obj);
+
                     num_dgm = num_dgm + 2;
+
                 }
             } else if (inputArray[c_obj] < inputArray[t_obj]) {
                 mpatch[c_obj] = t_obj;
@@ -1351,6 +1356,9 @@ Result computePH(double *inputArr, int numR, int numC) {
 
                     dgm_pos.push_back(c_obj);
                     dgm_pos.push_back(t_point);
+
+                    mapper.push_back(c_obj);
+                    mapper.push_back(t_obj);
 
                     num_dgm = num_dgm + 2;
                 }
@@ -1364,6 +1372,9 @@ Result computePH(double *inputArr, int numR, int numC) {
                         dgm_pos.push_back(t_obj);
                         dgm_pos.push_back(t_point);
 
+                        mapper.push_back(t_obj);
+                        mapper.push_back(c_obj);
+
                         num_dgm = num_dgm + 2;
                     }
                 }else{
@@ -1374,6 +1385,9 @@ Result computePH(double *inputArr, int numR, int numC) {
 
                         dgm_pos.push_back(c_obj);
                         dgm_pos.push_back(t_point);
+
+                        mapper.push_back(c_obj);
+                        mapper.push_back(t_obj);
 
                         num_dgm = num_dgm + 2;
                     }
@@ -1389,10 +1403,14 @@ Result computePH(double *inputArr, int numR, int numC) {
     dgm_pos.push_back(argmax);
     dgm_pos.push_back(argmin);
 
+    mapper.push_back(argmax);
+    mapper.push_back(-1);
+
     num_dgm = num_dgm + 2;
 
     res.data = dgm;
     res.posix = dgm_pos;
+    res.mapper = mapper;
     res.length = num_dgm;
 
     return res;
@@ -1426,10 +1444,12 @@ void freemem(){
 
     res.data.clear();
     res.posix.clear();
+    res.mapper.clear();
     res.length = 0;
 
     mpatch.clear();
     dgm_pos.clear();
     dgm.clear();
+    mapper.clear();
     uPoints.clear();
 }

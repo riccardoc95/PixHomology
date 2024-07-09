@@ -5,6 +5,7 @@
 struct Result {
     std::vector <double> data;
     std::vector <int> posix;
+    std::vector <int> mapper;
     int length;
 };
 
