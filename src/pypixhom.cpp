@@ -120,6 +120,10 @@ py::object py_computePH(py::array_t<double> input_array, bool return_index = fal
         throw std::runtime_error("Input should be a 1D/2D NumPy array");
     }
 
+    if (numCols == 1){
+        maxdim = 0;
+    }
+
     // Call the computePH function (dim = 0)
     Result res;
     try {
@@ -133,14 +137,25 @@ py::object py_computePH(py::array_t<double> input_array, bool return_index = fal
     auto data_buf = data_array_0.request();
     std::copy(res.data.begin(), res.data.end(), (double *)data_buf.ptr);
 
-    py::array_t<int> posix_array_0({res.length / 2, 4});
+    //py::array_t<int> posix_array_0({res.length / 2, 4});
+    //auto posix_buf = posix_array_0.request();
+    // Define posix_array_0 dimensions based on numCols
+    py::array_t<int> posix_array_0(numCols == 1 ? py::array_t<int>({res.length / 2, 2}) : py::array_t<int>({res.length / 2, 4}));
     auto posix_buf = posix_array_0.request();
-    for (size_t i = 0; i < (res.posix.size() * 2); i += 4) {
-        ((int*)posix_buf.ptr)[i] = res.posix[i / 2] % numCols;
-        ((int*)posix_buf.ptr)[i + 1] = res.posix[i / 2] / numCols;
-        ((int*)posix_buf.ptr)[i + 2] = res.posix[(i / 2) + 1] % numCols;
-        ((int*)posix_buf.ptr)[i + 3] = res.posix[(i / 2) + 1] / numCols;
+    if (numCols == 1){
+        for (size_t i = 0; i < (res.posix.size()); i += 2) {
+            ((int*)posix_buf.ptr)[i] = res.posix[i / 2];
+            ((int*)posix_buf.ptr)[i + 1] = res.posix[(i / 2) + 1];
+        }
+    }else{
+        for (size_t i = 0; i < (res.posix.size() * 2); i += 4) {
+            ((int*)posix_buf.ptr)[i] = res.posix[i / 2] % numCols;
+            ((int*)posix_buf.ptr)[i + 1] = res.posix[i / 2] / numCols;
+            ((int*)posix_buf.ptr)[i + 2] = res.posix[(i / 2) + 1] % numCols;
+            ((int*)posix_buf.ptr)[i + 3] = res.posix[(i / 2) + 1] / numCols;
+        }
     }
+
     freemem();
 
 
