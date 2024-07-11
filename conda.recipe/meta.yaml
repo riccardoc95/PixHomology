@@ -1,6 +1,6 @@
 package:
   name: pixhomology
-  version: 0.0.1
+  version: "{{ environ['GIT_DESCRIBE_TAG'] }}"
 
 source:
   path: ..
