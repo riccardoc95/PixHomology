@@ -27,6 +27,11 @@ jobs:
           auto-update-conda: false
           auto-activate-base: false
           show-channel-urls: true
+      - name: Install package
+        run: |
+          git submodule init
+          git submodule update
+          pip install .
       - name: Build but do not upload the conda packages
         uses: uibcdf/action-build-and-upload-conda-packages@v1.3.0
         with:
