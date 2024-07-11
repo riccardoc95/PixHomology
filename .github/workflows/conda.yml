@@ -43,5 +43,5 @@ jobs:
           platform_win-64: false
           user: rceccaroni
           label: auto
-          upload: true
+          upload: false
           token: ${{ secrets.CONDA_API_TOKEN }} # Replace with the right name of your secret
