@@ -26,7 +26,19 @@ jobs:
         with:
           submodules: true
 
-      - name: Get conda
+      - name: Set up Miniconda on Windows
+        if: runner.os == 'Windows'
+        uses: conda-incubator/setup-miniconda@v3.0.4
+        with:
+          python-version: ${{ matrix.python-version }}
+          auto-activate-base: true
+          activate-environment: base
+          use-project-specific: true
+          channels: conda-forge
+          channel-priority: strict
+
+      - name: Set up Miniconda on non-Windows
+        if: runner.os != 'Windows'
         uses: conda-incubator/setup-miniconda@v3.0.4
         with:
           python-version: ${{ matrix.python-version }}
