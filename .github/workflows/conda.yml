@@ -41,7 +41,7 @@ jobs:
           platform_linux-64: false
           platform_osx-64: false
           platform_win-64: false
-          user: uibcdf
+          user: rceccaroni
           label: auto
           upload: true
           token: ${{ secrets.CONDA_API_TOKEN }} # Replace with the right name of your secret
