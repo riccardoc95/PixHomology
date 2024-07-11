@@ -1,41 +1,48 @@
-name: Test Build of conda packages
+name: Conda
 
-# Controls when the action will run.
 on:
   push:
     branches:
       - main
       - test
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
 jobs:
-  conda_deployment_with_new_tag:
-    name: Test conda deployment of package with Python ${{ matrix.python-version }}
-    runs-on: ubuntu-latest
+  build:
     strategy:
+      fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9", "3.10"]
+        platform: [ubuntu-latest, windows-latest, macos-12]
+        python-version: ["3.8", "3.10"]
+
+    runs-on: ${{ matrix.platform }}
+
+    # The setup-miniconda action needs this to activate miniconda
+    defaults:
+      run:
+        shell: "bash -l {0}"
+
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-      - name: Conda environment creation and activation
-        uses: conda-incubator/setup-miniconda@v2
+          submodules: true
+
+      - name: Get conda
+        uses: conda-incubator/setup-miniconda@v3.0.4
         with:
           python-version: ${{ matrix.python-version }}
-          auto-update-conda: false
-          auto-activate-base: false
-          show-channel-urls: true
-      - name: Build but do not upload the conda packages
-        uses: uibcdf/action-build-and-upload-conda-packages@v1.3.0
-        with:
-          meta_yaml_dir: devtools/conda-build
-          python-version: ${{ matrix.python-version }} # Values previously defined in `matrix`
-          platform_linux-64: true
-          platform_osx-64: true
-          platform_win-64: true
-          user: uibcdf
-          label: auto
-          upload: false
+          channels: conda-forge
+          channel-priority: strict
+
+      # Currently conda-build requires the dead package "toml" but doesn't declare it
+      - name: Prepare
+        run: conda install conda-build conda-verify pytest toml
+
+      - name: Build
+        run: conda build conda.recipe
+
+      - name: Install
+        run: conda install -c ${CONDA_PREFIX}/conda-bld/ pixhomology
+
+      - name: Test
+        run: python -m pytest
