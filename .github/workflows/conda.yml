@@ -43,5 +43,5 @@ jobs:
           platform_win-64: false
           user: uibcdf
           label: auto
-          upload: false
+          upload: true
           token: ${{ secrets.CONDA_API_TOKEN }} # Replace with the right name of your secret
