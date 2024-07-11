@@ -21,12 +21,12 @@ jobs:
         with:
           fetch-depth: 0
       - name: Conda environment creation and activation
-        uses: conda-incubator/setup-miniconda@v2
+        uses: conda-incubator/setup-miniconda@v3
         with:
           python-version: ${{ matrix.python-version }}
           environment-file: conda.recipe/build_env.yaml    # Path to the build conda environment
           auto-update-conda: false
-          auto-activate-base: false
+          auto-activate-base: true
           show-channel-urls: true
       - name: Install package
         run: |
