@@ -48,7 +48,10 @@ jobs:
 
       # Currently conda-build requires the dead package "toml" but doesn't declare it
       - name: Prepare
-        run: conda install conda-build conda-verify pytest toml
+        run: |
+          conda create --name test-env python=${{ matrix.python-version }} -y
+          conda activate test-env
+          conda install conda-build conda-verify pytest toml -y
 
       - name: Build
         run: conda build conda.recipe
