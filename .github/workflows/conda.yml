@@ -21,7 +21,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Conda environment creation and activation
-        uses: conda-incubator/setup-miniconda@v3
+        uses: conda-incubator/setup-miniconda@v2
         with:
           python-version: ${{ matrix.python-version }}
           environment-file: conda.recipe/build_env.yaml    # Path to the build conda environment
@@ -42,6 +42,6 @@ jobs:
           platform_osx-64: false
           platform_win-64: false
           user: rceccaroni
-          label: auto
-          upload: false
+          label: dev
+          upload: true
           token: ${{ secrets.CONDA_API_TOKEN }} # Replace with the right name of your secret
