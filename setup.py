@@ -137,5 +137,5 @@ setup(
     zip_safe=False,
     extras_require={"test": ["pytest>=6.0"]},
     python_requires=">=3.7",
-    project_urls={"GitHub": "https://github.com/riccardoc95/PixHomology"}
+    project_urls={"GitHub": "https://github.com/riccardoc95/PixHomology"},
 )
